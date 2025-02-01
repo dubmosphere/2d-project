@@ -1,0 +1,7 @@
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
+
+*.sln binary
+*.suo binary
+*.vcxproj binary
+*.sln -merge -text
