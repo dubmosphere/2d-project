@@ -9,11 +9,16 @@ func _ready() -> void:
 	print("Ready")
 	initialize_animations()
 
+func _process(delta: float) -> void:
+	if(Input.is_action_just_pressed("quit")):
+		get_tree().quit()
+	elif(Input.is_action_just_pressed("pause")):
+		get_tree().paused = false if get_tree().paused else true
+
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 	handle_animations()
 	move_and_slide()
-	handle_collision()
 
 func initialize_animations() -> void:
 	$Sprite2D/PlayerAnimationTree.set("parameters/Idle/blend_position", 1)
@@ -44,14 +49,6 @@ func handle_movement(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-func handle_collision() -> void:
-	var floor_normal = get_floor_normal()
-	var floor_angle = get_floor_angle()
-	var last_collision = get_last_slide_collision()
-	
-	if(last_collision):
-		print(last_collision.get_collider())
 	
 func handle_animations() -> void:
 	if(!is_on_floor()):

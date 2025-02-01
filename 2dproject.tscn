@@ -4,6 +4,319 @@
 [ext_resource type="Texture2D" uid="uid://nqabn0uxlbb8" path="res://media/images/spritesheets/spritesheet_gb.png" id="2_5drqp"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_rn2ew"]
 
+[sub_resource type="Animation" id="Animation_k1mqw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_72tps"]
+resource_name = "Down Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_j0l5v"]
+resource_name = "Left Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 10]
+}
+
+[sub_resource type="Animation" id="Animation_108s7"]
+resource_name = "Right Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [13, 15]
+}
+
+[sub_resource type="Animation" id="Animation_so6c1"]
+resource_name = "Up Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 6]
+}
+
+[sub_resource type="Animation" id="Animation_o2db8"]
+resource_name = "jump_down_left"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_mglk5"]
+resource_name = "jump_down_right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+
+[sub_resource type="Animation" id="Animation_p0oxw"]
+resource_name = "jump_up_left"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_hlms0"]
+resource_name = "jump_up_right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_j4u7y"]
+resource_name = "Down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_7ldeh"]
+resource_name = "Left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_wg6jv"]
+resource_name = "Right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_g7ala"]
+resource_name = "Up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80bpc"]
+_data = {
+"RESET": SubResource("Animation_k1mqw"),
+"idle_down": SubResource("Animation_72tps"),
+"idle_left": SubResource("Animation_j0l5v"),
+"idle_right": SubResource("Animation_108s7"),
+"idle_up": SubResource("Animation_so6c1"),
+"jump_down_left": SubResource("Animation_o2db8"),
+"jump_down_right": SubResource("Animation_mglk5"),
+"jump_up_left": SubResource("Animation_p0oxw"),
+"jump_up_right": SubResource("Animation_hlms0"),
+"walk_down": SubResource("Animation_j4u7y"),
+"walk_left": SubResource("Animation_7ldeh"),
+"walk_right": SubResource("Animation_wg6jv"),
+"walk_up": SubResource("Animation_g7ala")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijh1v"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kelcu"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_5eilo"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ijh1v")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_kelcu")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqoyp"]
+animation = &"jump_down_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sx8yc"]
+animation = &"jump_down_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_mv78m"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_aqoyp")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_sx8yc")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7xnf4"]
+animation = &"jump_up_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ivn4a"]
+animation = &"jump_up_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_by0ax"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_7xnf4")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_ivn4a")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqaip"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_atnr7"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_68a4b"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dqaip")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_atnr7")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_trtdl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ksvf1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqpcd"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kget7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyytb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjjq2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3wp8"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2lavb"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_5eilo")
+states/Idle/position = Vector2(402, 124)
+states/JumpDown/node = SubResource("AnimationNodeBlendSpace1D_mv78m")
+states/JumpDown/position = Vector2(658, 241)
+states/JumpUp/node = SubResource("AnimationNodeBlendSpace1D_by0ax")
+states/JumpUp/position = Vector2(402, 241)
+states/Start/position = Vector2(232, 135)
+states/Walk/node = SubResource("AnimationNodeBlendSpace1D_68a4b")
+states/Walk/position = Vector2(658, 124)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "Idle", "JumpUp", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "JumpUp", "JumpDown", SubResource("AnimationNodeStateMachineTransition_kget7"), "JumpDown", "Idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "Walk", "JumpUp", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "JumpDown", "Walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gboj7"]
+size = Vector2(20, 23.1902)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1syk1"]
 texture = ExtResource("1_xjrsn")
 texture_region_size = Vector2i(64, 64)
@@ -367,336 +680,14 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1syk1")
 
-[sub_resource type="Animation" id="Animation_k1mqw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_72tps"]
-resource_name = "Down Idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 2]
-}
-
-[sub_resource type="Animation" id="Animation_j0l5v"]
-resource_name = "Left Idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [8, 10]
-}
-
-[sub_resource type="Animation" id="Animation_108s7"]
-resource_name = "Right Idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [13, 15]
-}
-
-[sub_resource type="Animation" id="Animation_so6c1"]
-resource_name = "Up Idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 6]
-}
-
-[sub_resource type="Animation" id="Animation_o2db8"]
-resource_name = "jump_down_left"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [11]
-}
-
-[sub_resource type="Animation" id="Animation_mglk5"]
-resource_name = "jump_down_right"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [14]
-}
-
-[sub_resource type="Animation" id="Animation_p0oxw"]
-resource_name = "jump_up_left"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [9]
-}
-
-[sub_resource type="Animation" id="Animation_hlms0"]
-resource_name = "jump_up_right"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-
-[sub_resource type="Animation" id="Animation_j4u7y"]
-resource_name = "Down"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_7ldeh"]
-resource_name = "Left"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_wg6jv"]
-resource_name = "Right"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15]
-}
-
-[sub_resource type="Animation" id="Animation_g7ala"]
-resource_name = "Up"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_80bpc"]
-_data = {
-"RESET": SubResource("Animation_k1mqw"),
-"idle_down": SubResource("Animation_72tps"),
-"idle_left": SubResource("Animation_j0l5v"),
-"idle_right": SubResource("Animation_108s7"),
-"idle_up": SubResource("Animation_so6c1"),
-"jump_down_left": SubResource("Animation_o2db8"),
-"jump_down_right": SubResource("Animation_mglk5"),
-"jump_up_left": SubResource("Animation_p0oxw"),
-"jump_up_right": SubResource("Animation_hlms0"),
-"walk_down": SubResource("Animation_j4u7y"),
-"walk_left": SubResource("Animation_7ldeh"),
-"walk_right": SubResource("Animation_wg6jv"),
-"walk_up": SubResource("Animation_g7ala")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ijh1v"]
-animation = &"idle_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kelcu"]
-animation = &"idle_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_5eilo"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_ijh1v")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_kelcu")
-blend_point_1/pos = 1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqoyp"]
-animation = &"jump_down_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sx8yc"]
-animation = &"jump_down_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_mv78m"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_aqoyp")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_sx8yc")
-blend_point_1/pos = 1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7xnf4"]
-animation = &"jump_up_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ivn4a"]
-animation = &"jump_up_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_by0ax"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_7xnf4")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_ivn4a")
-blend_point_1/pos = 1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqaip"]
-animation = &"walk_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_atnr7"]
-animation = &"walk_right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_68a4b"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_dqaip")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_atnr7")
-blend_point_1/pos = 1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_trtdl"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ksvf1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqpcd"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kget7"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nyytb"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wjjq2"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3wp8"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2lavb"]
-states/Idle/node = SubResource("AnimationNodeBlendSpace1D_5eilo")
-states/Idle/position = Vector2(402, 124)
-states/JumpDown/node = SubResource("AnimationNodeBlendSpace1D_mv78m")
-states/JumpDown/position = Vector2(658, 241)
-states/JumpUp/node = SubResource("AnimationNodeBlendSpace1D_by0ax")
-states/JumpUp/position = Vector2(402, 241)
-states/Start/position = Vector2(232, 135)
-states/Walk/node = SubResource("AnimationNodeBlendSpace1D_68a4b")
-states/Walk/position = Vector2(658, 124)
-transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "Idle", "JumpUp", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "JumpUp", "JumpDown", SubResource("AnimationNodeStateMachineTransition_kget7"), "JumpDown", "Idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "Walk", "JumpUp", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "JumpDown", "Walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ryrd"]
-custom_solver_bias = 1.0
-
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 position = Vector2(-7, 275)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(712, 141)
-tile_map_data = PackedByteArray("AAD9/wAAAQABAAAAAAD+/wAAAQABAAAAAAD//wAAAQABAAAAAAAAAAAAAQABAAAAAAABAAAAAQAEAAQAAAACAP//AQABAAIAAAD8/wAAAQAEAAEAAAD8////AQAEAAAAAAD9////AQAAAAEAAAD+////AQAAAAEAAAD/////AQAAAAEAAAAAAP//AQAAAAEAAAABAP//AQAAAAEAAAACAAAAAQABAAEAAAACAAEAAQABAAEAAAACAAIAAQABAAEAAAACAAQAAQABAAEAAAACAAUAAQABAAMAAAACAAYAAQAFAAIAAAABAAYAAQAEAAMAAAAAAAYAAQAEAAMAAAD//wYAAQAEAAMAAAD+/wYAAQAEAAMAAAD9/wYAAQAEAAMAAAD8/wYAAQAEAAMAAAD7/wYAAQAEAAMAAAD6/wYAAQAEAAMAAAD5/wYAAQAEAAMAAAD4/wUAAQABAAAAAAD4/wQAAQABAAAAAAD4/wMAAQABAAAAAAD6/wEAAQAAAAEAAAD7/wEAAQAGAAEAAFD8/wEAAQADAAAAAAD+/wQAAQADAAAAAAD7/wQAAQACAAAAAAD5/wUAAQABAAAAAAD6/wUAAQAEAAQAAAD7/wUAAQABAAAAAAD8/wUAAQABAAAAAAD9/wUAAQABAAAAAAD+/wUAAQABAAAAAAD//wUAAQABAAAAAAAAAAUAAQABAAAAAAABAAUAAQACAAQAAAABAAQAAQABAAAAAAABAAEAAQABAAAAAAD//wEAAQABAAAAAAD+/wEAAQAEAAQAAAD9/wEAAQABAAAAAAD9/wIAAQABAAAAAAD7/wIAAQABAAAAAAD6/wIAAQABAAAAAAD5/wMAAQABAAAAAAD5/wQAAQABAAAAAAD6/wMAAQABAAAAAAD6/wQAAQABAAAAAAD7/wMAAQABAAAAAAD8/wMAAQAAAAQAAAD9/wMAAQABAAQAAAD+/wMAAQABAAAAAAD//wMAAQABAAAAAAAAAAQAAQABAAAAAAD//wQAAQABAAAAAAD//wIAAQABAAAAAAD+/wIAAQABAAAAAAD9/wQAAQABAAUAAAD8/wQAAQAAAAUAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAACAAMAAQABAAEAAAD4/wEAAQAAAAEAAAD5/wEAAQAAAAEAAAD5/wIAAQADAAQAAAD4/wIAAQABAAAAAAD8/wIAAQACAAAAAAABAAIAAQABAAAAAAAAAAIAAQACAAAAAAAAAAEAAQABAAAAAAD3/wEAAQAAAAEAAAD2/wEAAQAAAAEAAAD1/wEAAQAAAAEAAAD0/wEAAQAAAAEAAADz/wEAAQAAAAEAAADy/wEAAQAAAAEAAADx/wEAAQAAAAEAAAD4/wYAAQAEAAMAAADw/wEAAQAGAAAAAADv/wAAAQAFAAEAAADv////AQAFAAAAAADt//7/AQAFAAAAAADu////AQAGAAAAAADu/wAAAQADAAAAAADu/wEAAQABAAAAAADv/wEAAQABAAAAAADv/wIAAQABAAAAAADw/wIAAQABAAAAAADx/wIAAQABAAAAAADy/wIAAQABAAAAAADz/wIAAQABAAAAAAD0/wIAAQABAAAAAAD1/wIAAQABAAAAAAD2/wIAAQABAAAAAAD3/wIAAQABAAAAAAD3/wYAAQAEAAMAAAD2/wYAAQAEAAMAAAD1/wYAAQAEAAMAAAD0/wYAAQAEAAMAAADz/wYAAQAEAAMAAADy/wYAAQAEAAMAAADx/wYAAQAEAAMAAADw/wYAAQAEAAMAAADv/wYAAQAEAAMAAADu/wYAAQAEAAMAAADt/wYAAQAEAAMAAADt/wUAAQABAAAAAADt/wQAAQABAAAAAADt/wMAAQABAAAAAADt/wIAAQABAAAAAADt/wEAAQADAAQAAADt/wAAAQABAAAAAADu/wIAAQABAAAAAADu/wMAAQABAAAAAADu/wQAAQABAAAAAADu/wUAAQABAAAAAADv/wUAAQABAAAAAADw/wUAAQABAAAAAADx/wUAAQABAAAAAADy/wUAAQABAAAAAADz/wUAAQABAAAAAAD0/wUAAQABAAAAAAD1/wUAAQABAAAAAAD2/wUAAQAEAAQAAAD3/wUAAQABAAAAAAD3/wQAAQABAAAAAAD3/wMAAQABAAAAAAD2/wMAAQABAAAAAAD2/wQAAQABAAAAAAD1/wQAAQABAAAAAAD1/wMAAQABAAAAAAD0/wMAAQAEAAQAAAD0/wQAAQABAAAAAADz/wQAAQAEAAQAAADy/wQAAQABAAAAAADx/wQAAQABAAAAAADx/wMAAQABAAAAAADy/wMAAQABAAAAAADz/wMAAQABAAAAAADw/wQAAQAEAAQAAADv/wQAAQABAAAAAADv/wMAAQABAAAAAADw/wMAAQABAAAAAADs/wYAAQAEAAMAAADr/wYAAQAEAAMAAADq/wYAAQAEAAMAAADp/wYAAQAEAAMAAADo/wYAAQAEAAMAAADn/wYAAQAEAAMAAADm/wYAAQAEAAMAAADl/wYAAQAEAAIAAADl/wUAAQAAAAMAAADl/wQAAQADAAEAAADl/wMAAQADAAEAAADl/wIAAQADAAEAAADl/wEAAQADAAEAAADl/wAAAQADAAEAAADl////AQADAAEAAADl//7/AQAAAAIAAADm/wUAAQADAAAAAADm/wQAAQABAAAAAADm/wMAAQABAAAAAADm/wIAAQABAAAAAADm/wEAAQABAAAAAADm/wAAAQABAAAAAADm////AQACAAAAAADm//7/AQAAAAEAAADn//7/AQAAAAEAAADo//7/AQAAAAEAAADp//7/AQAAAAEAAADq//7/AQAAAAEAAADr//7/AQAAAAEAAADs//7/AQAAAAEAAADs/wAAAQABAAAAAADs/wEAAQABAAAAAADs/wIAAQABAAAAAADs/wMAAQABAAAAAADs/wQAAQABAAAAAADs/wUAAQABAAAAAADr/wUAAQABAAAAAADq/wUAAQABAAAAAADp/wUAAQABAAAAAADo/wUAAQABAAAAAADn/wUAAQABAAAAAADn/wQAAQABAAAAAADn/wMAAQABAAAAAADn/wIAAQABAAAAAADn/wEAAQADAAAAAADn/wAAAQABAAAAAADo/wAAAQABAAAAAADr/wAAAQAEAAQAAADr/wEAAQABAAAAAADr/wIAAQABAAAAAADr/wMAAQABAAAAAADr/wQAAQABAAAAAADq/wQAAQABAAUAAADp/wQAAQAAAAUAAADp/wMAAQAAAAQAAADp/wIAAQABAAAAAADq/wIAAQABAAAAAADq/wEAAQABAAAAAADq/wAAAQABAAAAAADq/wMAAQABAAQAAADo/wMAAQABAAAAAADo/wQAAQABAAAAAADp/wEAAQACAAQAAADp/wAAAQABAAAAAADo/wIAAQABAAAAAADo/wEAAQABAAAAAADn////AQABAAAAAADo////AQABAAAAAADp////AQABAAAAAADq////AQABAAAAAADr////AQABAAAAAADs////AQABAAAAAADt////AQABAAAAAAD7/wAAAQAEAAAAAAD9//7/AQAEAAAAAAD3//7/AQACAAEAAAD2//7/AQACAAEAAAD1//7/AQACAAEAAAA=")
-tile_set = SubResource("TileSet_56bii")
-use_kinematic_bodies = true
-collision_visibility_mode = 1
-navigation_visibility_mode = 1
-
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(72, -297)
+position = Vector2(-2455, 58)
 scale = Vector2(0.1825, 0.1825)
 disable_mode = 2
-floor_stop_on_slope = false
-floor_max_angle = 0.413643
+floor_max_angle = 0.804597
 floor_snap_length = 13.1
 safe_margin = 1.0
 script = ExtResource("2_rn2ew")
@@ -716,17 +707,30 @@ speed_scale = 0.755
 [node name="PlayerAnimationTree" type="AnimationTree" parent="Player/Sprite2D"]
 tree_root = SubResource("AnimationNodeStateMachine_2lavb")
 anim_player = NodePath("../PlayerAnimation")
-parameters/Idle/blend_position = 0
+parameters/Idle/blend_position = -0.610403
 parameters/JumpDown/blend_position = 0
 parameters/JumpUp/blend_position = 0
 parameters/Walk/blend_position = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 21.9178)
-scale = Vector2(10.8171, 13.7247)
-shape = SubResource("CapsuleShape2D_4ryrd")
+position = Vector2(0, 27.3973)
+scale = Vector2(6.8719, 17.0124)
+shape = SubResource("RectangleShape2D_gboj7")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
+zoom = Vector2(1.4, 1.4)
 position_smoothing_speed = 7.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_vertical_offset = -1.0
+drag_left_margin = 0.1
+drag_top_margin = 0.3
+drag_right_margin = 0.1
+drag_bottom_margin = 0.3
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(473, 229)
+tile_map_data = PackedByteArray("AAD9/wAAAQABAAAAAAD+/wAAAQABAAAAAAD//wAAAQABAAAAAAAAAAAAAQABAAAAAAABAAAAAQAEAAQAAAACAP//AQABAAIAAAD8/wAAAQAEAAEAAAD8////AQAEAAAAAAD9////AQAAAAEAAAD+////AQAAAAEAAAD/////AQAAAAEAAAAAAP//AQAAAAEAAAABAP//AQAAAAEAAAACAAAAAQABAAEAAAACAAEAAQABAAEAAAACAAIAAQABAAEAAAACAAQAAQABAAEAAAACAAUAAQABAAMAAAACAAYAAQAFAAIAAAABAAYAAQAEAAMAAAAAAAYAAQAEAAMAAAD//wYAAQAEAAMAAAD+/wYAAQAEAAMAAAD9/wYAAQAEAAMAAAD8/wYAAQAEAAMAAAD7/wYAAQAEAAMAAAD6/wYAAQAEAAMAAAD5/wYAAQAEAAMAAAD4/wUAAQABAAAAAAD4/wQAAQABAAAAAAD4/wMAAQABAAAAAAD6/wEAAQAAAAEAAAD7/wEAAQAGAAEAAFD8/wEAAQADAAAAAAD+/wQAAQADAAAAAAD7/wQAAQACAAAAAAD5/wUAAQABAAAAAAD6/wUAAQAEAAQAAAD7/wUAAQABAAAAAAD8/wUAAQABAAAAAAD9/wUAAQABAAAAAAD+/wUAAQABAAAAAAD//wUAAQABAAAAAAAAAAUAAQABAAAAAAABAAUAAQACAAQAAAABAAQAAQABAAAAAAABAAEAAQABAAAAAAD//wEAAQABAAAAAAD+/wEAAQAEAAQAAAD9/wEAAQABAAAAAAD9/wIAAQABAAAAAAD7/wIAAQABAAAAAAD6/wIAAQABAAAAAAD5/wMAAQABAAAAAAD5/wQAAQABAAAAAAD6/wMAAQABAAAAAAD6/wQAAQABAAAAAAD7/wMAAQABAAAAAAD8/wMAAQAAAAQAAAD9/wMAAQABAAQAAAD+/wMAAQABAAAAAAD//wMAAQABAAAAAAAAAAQAAQABAAAAAAD//wQAAQABAAAAAAD//wIAAQABAAAAAAD+/wIAAQABAAAAAAD9/wQAAQABAAUAAAD8/wQAAQAAAAUAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAACAAMAAQABAAEAAAD4/wEAAQAAAAEAAAD5/wEAAQAAAAEAAAD5/wIAAQADAAQAAAD4/wIAAQABAAAAAAD8/wIAAQACAAAAAAABAAIAAQABAAAAAAAAAAIAAQACAAAAAAAAAAEAAQABAAAAAAD3/wEAAQAAAAEAAAD2/wEAAQAAAAEAAAD1/wEAAQAAAAEAAAD0/wEAAQAAAAEAAADz/wEAAQAAAAEAAADy/wEAAQAAAAEAAADx/wEAAQAAAAEAAAD4/wYAAQAEAAMAAADw/wEAAQAGAAAAAADv/wAAAQAFAAEAAADv////AQAFAAAAAADt//7/AQAFAAAAAADu////AQAGAAAAAADu/wAAAQADAAAAAADu/wEAAQABAAAAAADv/wEAAQABAAAAAADv/wIAAQABAAAAAADw/wIAAQABAAAAAADx/wIAAQABAAAAAADy/wIAAQABAAAAAADz/wIAAQABAAAAAAD0/wIAAQABAAAAAAD1/wIAAQABAAAAAAD2/wIAAQABAAAAAAD3/wIAAQABAAAAAAD3/wYAAQAEAAMAAAD2/wYAAQAEAAMAAAD1/wYAAQAEAAMAAAD0/wYAAQAEAAMAAADz/wYAAQAEAAMAAADy/wYAAQAEAAMAAADx/wYAAQAEAAMAAADw/wYAAQAEAAMAAADv/wYAAQAEAAMAAADu/wYAAQAEAAMAAADt/wYAAQAEAAMAAADt/wUAAQABAAAAAADt/wQAAQABAAAAAADt/wMAAQABAAAAAADt/wIAAQABAAAAAADt/wEAAQADAAQAAADt/wAAAQABAAAAAADu/wIAAQABAAAAAADu/wMAAQABAAAAAADu/wQAAQABAAAAAADu/wUAAQABAAAAAADv/wUAAQABAAAAAADw/wUAAQABAAAAAADx/wUAAQABAAAAAADy/wUAAQABAAAAAADz/wUAAQABAAAAAAD0/wUAAQABAAAAAAD1/wUAAQABAAAAAAD2/wUAAQAEAAQAAAD3/wUAAQABAAAAAAD3/wQAAQABAAAAAAD3/wMAAQABAAAAAAD2/wMAAQABAAAAAAD2/wQAAQABAAAAAAD1/wQAAQABAAAAAAD1/wMAAQABAAAAAAD0/wMAAQAEAAQAAAD0/wQAAQABAAAAAADz/wQAAQAEAAQAAADy/wQAAQABAAAAAADx/wQAAQABAAAAAADx/wMAAQABAAAAAADy/wMAAQABAAAAAADz/wMAAQABAAAAAADw/wQAAQAEAAQAAADv/wQAAQABAAAAAADv/wMAAQABAAAAAADw/wMAAQABAAAAAADs/wYAAQAEAAMAAADr/wYAAQAEAAMAAADq/wYAAQAEAAMAAADp/wYAAQAEAAMAAADo/wYAAQAEAAMAAADn/wYAAQAEAAMAAADm/wYAAQAEAAMAAADl/wYAAQAEAAIAAADl/wUAAQAAAAMAAADl/wQAAQADAAEAAADl/wMAAQADAAEAAADl/wIAAQADAAEAAADl/wEAAQADAAEAAADl/wAAAQADAAEAAADl////AQADAAEAAADl//7/AQAAAAIAAADm/wUAAQADAAAAAADm/wQAAQABAAAAAADm/wMAAQABAAAAAADm/wIAAQABAAAAAADm/wEAAQABAAAAAADm/wAAAQABAAAAAADm////AQACAAAAAADm//7/AQAAAAEAAADn//7/AQAAAAEAAADo//7/AQAAAAEAAADp//7/AQAAAAEAAADq//7/AQAAAAEAAADr//7/AQAAAAEAAADs//7/AQAAAAEAAADs/wAAAQABAAAAAADs/wEAAQABAAAAAADs/wIAAQABAAAAAADs/wMAAQABAAAAAADs/wQAAQABAAAAAADs/wUAAQABAAAAAADr/wUAAQABAAAAAADq/wUAAQABAAAAAADp/wUAAQABAAAAAADo/wUAAQABAAAAAADn/wUAAQABAAAAAADn/wQAAQABAAAAAADn/wMAAQABAAAAAADn/wIAAQABAAAAAADn/wEAAQADAAAAAADn/wAAAQABAAAAAADo/wAAAQABAAAAAADr/wAAAQAEAAQAAADr/wEAAQABAAAAAADr/wIAAQABAAAAAADr/wMAAQABAAAAAADr/wQAAQABAAAAAADq/wQAAQABAAUAAADp/wQAAQAAAAUAAADp/wMAAQAAAAQAAADp/wIAAQABAAAAAADq/wIAAQABAAAAAADq/wEAAQABAAAAAADq/wAAAQABAAAAAADq/wMAAQABAAQAAADo/wMAAQABAAAAAADo/wQAAQABAAAAAADp/wEAAQACAAQAAADp/wAAAQABAAAAAADo/wIAAQABAAAAAADo/wEAAQABAAAAAADn////AQABAAAAAADo////AQABAAAAAADp////AQABAAAAAADq////AQABAAAAAADr////AQABAAAAAADs////AQABAAAAAADt////AQABAAAAAAD7/wAAAQAEAAAAAAD9//7/AQAEAAAAAAD3//7/AQACAAEAAAD2//7/AQACAAEAAAD1//7/AQACAAEAAADd//7/AQABAAIAAADc//7/AQAAAAEAAADb//7/AQAAAAEAAADa//7/AQAAAAEAAADZ//7/AQAAAAEAAADY//7/AQAAAAEAAADX////AQABAAAAAADW////AQABAAAAAADV////AQABAAAAAADU////AQABAAAAAADX//7/AQAAAAEAAADW//7/AQAAAAEAAADV//7/AQAAAAEAAADU//7/AQAAAAEAAADT//7/AQAAAAEAAADS//7/AQAAAAEAAADS////AQABAAAAAADT////AQABAAAAAADY////AQABAAAAAADZ////AQABAAAAAADa////AQABAAAAAADb////AQABAAAAAADc////AQABAAAAAADc/wAAAQABAAAAAADc/wEAAQABAAAAAADc/wIAAQABAAAAAADc/wMAAQABAAAAAADc/wQAAQABAAAAAADb/wAAAQABAAAAAADa/wAAAQABAAAAAADZ/wAAAQABAAAAAADY/wAAAQABAAAAAADX/wAAAQABAAAAAADW/wAAAQABAAAAAADV/wAAAQABAAAAAADU/wAAAQABAAAAAADT/wAAAQABAAAAAADS/wAAAQABAAAAAADU/wEAAQABAAAAAADV/wEAAQABAAAAAADW/wIAAQABAAAAAADX/wIAAQABAAAAAADY/wMAAQABAAAAAADZ/wMAAQABAAAAAADa/wQAAQABAAAAAADb/wQAAQABAAAAAADb/wMAAQABAAAAAADb/wIAAQABAAAAAADb/wEAAQABAAAAAADa/wEAAQABAAAAAADZ/wEAAQABAAAAAADY/wEAAQABAAAAAADX/wEAAQABAAAAAADW/wEAAQABAAAAAADY/wIAAQABAAAAAADZ/wIAAQABAAAAAADa/wIAAQABAAAAAADa/wMAAQABAAAAAADS/wEAAQABAAAAAADS/wIAAQABAAAAAADT/wMAAQABAAAAAADT/wQAAQABAAAAAADS/wQAAQABAAAAAADS/wMAAQABAAAAAADT/wEAAQABAAAAAADT/wIAAQABAAAAAADU/wIAAQABAAAAAADV/wIAAQABAAAAAADU/wMAAQABAAAAAADV/wMAAQABAAAA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AAD7/yUAAQADAAQAAAD8/yUAAQADAAQAAAD9/yUAAQADAAQAAAD+/yUAAQADAAQAAAD//yUAAQADAAQAAAAAACUAAQADAAQAAAABACUAAQADAAQAAAACACUAAQADAAQAAAADACUAAQADAAQAAAAEACUAAQADAAQAAAAFACUAAQADAAQAAAAGACUAAQADAAQAAAAHACUAAQADAAQAAAAIACUAAQADAAQAAAAJACUAAQADAAQAAAAKACUAAQADAAQAAAALACUAAQADAAQAAAAMACUAAQADAAQAAAAMACYAAQADAAQAAAALACYAAQADAAQAAAAKACYAAQADAAQAAAAJACYAAQADAAQAAAAIACYAAQADAAQAAAAHACYAAQADAAQAAAAGACYAAQADAAQAAAAFACYAAQADAAQAAAAEACYAAQADAAQAAAADACYAAQADAAQAAAACACYAAQADAAQAAAABACYAAQADAAQAAAAAACYAAQADAAQAAAD//yYAAQADAAQAAAD+/yYAAQADAAQAAAD9/yYAAQADAAQAAAD8/yYAAQADAAQAAAD7/yYAAQADAAQAAAD6/yYAAQADAAQAAAD5/yYAAQADAAQAAAD4/yYAAQADAAQAAAD3/yYAAQADAAQAAAD2/yYAAQADAAQAAAD1/yYAAQADAAQAAAD0/yYAAQADAAQAAADz/yYAAQADAAQAAADy/yYAAQADAAQAAADx/yYAAQADAAQAAADw/yYAAQADAAQAAADv/yYAAQADAAQAAADu/yYAAQADAAQAAADt/yYAAQADAAQAAADs/yYAAQADAAQAAADr/yYAAQADAAQAAADq/yYAAQADAAQAAADp/yYAAQADAAQAAADo/yYAAQADAAQAAADn/yYAAQADAAQAAADm/yYAAQADAAQAAADl/yYAAQADAAQAAADk/yYAAQADAAQAAADj/yYAAQADAAQAAADi/yYAAQADAAQAAADh/yYAAQADAAQAAADg/yYAAQADAAQAAADf/yYAAQADAAQAAADe/yYAAQADAAQAAADd/yYAAQADAAQAAADc/yYAAQADAAQAAADb/yYAAQADAAQAAADa/yYAAQADAAQAAADZ/yYAAQADAAQAAADY/yYAAQADAAQAAADX/yYAAQADAAQAAADW/yYAAQADAAQAAADV/yYAAQADAAQAAADU/yYAAQADAAQAAADT/yYAAQADAAQAAADS/yYAAQADAAQAAADR/yYAAQADAAQAAADQ/yYAAQADAAQAAADP/yYAAQADAAQAAADO/yYAAQADAAQAAADN/yYAAQADAAQAAADM/yYAAQADAAQAAADL/yYAAQADAAQAAADK/yYAAQADAAQAAAA=")
+tile_set = SubResource("TileSet_56bii")
+use_kinematic_bodies = true
+navigation_visibility_mode = 1
