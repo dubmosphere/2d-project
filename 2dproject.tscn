@@ -677,9 +677,8 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace1D_68a4b")
 states/Walk/position = Vector2(658, 124)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "Idle", "JumpUp", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "JumpUp", "JumpDown", SubResource("AnimationNodeStateMachineTransition_kget7"), "JumpDown", "Idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "Walk", "JumpUp", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "JumpDown", "Walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37cpm"]
-radius = 7.79451
-height = 27.6736
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ryrd"]
+custom_solver_bias = 1.0
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-7, 275)
@@ -692,25 +691,29 @@ use_kinematic_bodies = true
 collision_visibility_mode = 1
 navigation_visibility_mode = 1
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(72, -297)
 scale = Vector2(0.1825, 0.1825)
 disable_mode = 2
+floor_stop_on_slope = false
+floor_max_angle = 0.413643
+floor_snap_length = 13.1
+safe_margin = 1.0
 script = ExtResource("2_rn2ew")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture_filter = 1
 texture = ExtResource("2_5drqp")
 hframes = 4
 vframes = 4
 
-[node name="PlayerAnimation" type="AnimationPlayer" parent="CharacterBody2D/Sprite2D"]
+[node name="PlayerAnimation" type="AnimationPlayer" parent="Player/Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_80bpc")
 }
 speed_scale = 0.755
 
-[node name="PlayerAnimationTree" type="AnimationTree" parent="CharacterBody2D/Sprite2D"]
+[node name="PlayerAnimationTree" type="AnimationTree" parent="Player/Sprite2D"]
 tree_root = SubResource("AnimationNodeStateMachine_2lavb")
 anim_player = NodePath("../PlayerAnimation")
 parameters/Idle/blend_position = 0
@@ -718,12 +721,12 @@ parameters/JumpDown/blend_position = 0
 parameters/JumpUp/blend_position = 0
 parameters/Walk/blend_position = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-0.000488281, 28.8674)
-scale = Vector2(15.4658, 14.5459)
-shape = SubResource("CapsuleShape2D_37cpm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 21.9178)
+scale = Vector2(10.8171, 13.7247)
+shape = SubResource("CapsuleShape2D_4ryrd")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
