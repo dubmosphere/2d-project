@@ -1,4 +1,4 @@
 class_name World
-extends Node2D
+extends Node
 
 static var godmode = false

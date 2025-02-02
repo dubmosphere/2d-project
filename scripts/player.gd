@@ -18,7 +18,6 @@ var max_jumps = 2
 var jump_count = 0
 var last_velocity = Vector2(0.0, 0.0)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_tree = $Sprite/AnimationTree as AnimationTree
 	animation_state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
@@ -53,28 +52,49 @@ func initialize_animations() -> void:
 	animation_state_machine.travel("idle")
 
 func handle_movement(delta: float) -> void:
+	apply_gravity(delta)
+	handle_jump()
+	move()
+
+func apply_gravity(delta: float) -> void:
 	# Add the gravity.
 	if !is_on_floor():
 		velocity += get_gravity() * delta
 	
-	# Handle jump.
-	handle_jump()
-	
 	if velocity.y > MAX_DOWN_SPEED:
 		velocity.y = MAX_DOWN_SPEED
+
+func handle_jump() -> void:
+	# Handle jump.
+	if Input.is_action_just_pressed("jump"):
+		jump()
+	elif jump_count > 0 && is_on_floor():
+		jump_count = 0
+
+func jump() -> void:
+	var do_jump = false
 	
+	if World.godmode:
+		do_jump = true
+	if is_on_floor():
+		do_jump = true
+	if jump_count > 0 && jump_count < max_jumps && !is_on_floor():
+		do_jump = true
+	
+	if !do_jump:
+		return
+	
+	velocity.y = JUMP_VELOCITY
+	jump_sound.play()
+	jump_count += 1
+
+func move() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-func handle_jump() -> void:
-	if Input.is_action_just_pressed("jump"):
-		jump()
-	elif jump_count > 0 && is_on_floor():
-		jump_count = 0
 
 func handle_ff() -> void:
 	if !FF_ON:
@@ -107,30 +127,13 @@ func handle_animations() -> void:
 	
 	update_blend_positions()
 
-# Set blend positions by velocity.x
 func update_blend_positions() -> void:
+	# Set blend positions by velocity.x
 	if velocity.x != 0:
 		animation_tree.set("parameters/idle/blend_position", velocity.x)
 		animation_tree.set("parameters/walk/blend_position", velocity.x)
 		animation_tree.set("parameters/jump_up/blend_position", velocity.x)
 		animation_tree.set("parameters/jump_down/blend_position", velocity.x)
-
-func jump() -> void:
-	var do_jump = false
-	
-	if World.godmode:
-		do_jump = true
-	if is_on_floor():
-		do_jump = true
-	if jump_count > 0 && jump_count < max_jumps && !is_on_floor():
-		do_jump = true
-	
-	if !do_jump:
-		return
-	
-	velocity.y = JUMP_VELOCITY
-	jump_sound.play()
-	jump_count += 1
 
 func toggle_godmode() -> void:
 	World.godmode = !World.godmode;
