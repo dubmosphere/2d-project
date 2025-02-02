@@ -12,12 +12,12 @@ dest_files=["res://.godot/imported/Audio 17-1.wav-0dcef383d587be93d5c863a9eb1a85
 
 [params]
 
-force/8_bit=false
-force/mono=false
-force/max_rate=false
-force/max_rate_hz=44100
+force/8_bit=true
+force/mono=true
+force/max_rate=true
+force/max_rate_hz=11025.0
 edit/trim=false
-edit/normalize=false
+edit/normalize=true
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
