@@ -40,24 +40,7 @@ func initialize_animations() -> void:
 	animation_state_machine.travel("idle")
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-	elif Input.is_action_just_pressed("pause"):
-		get_tree().paused = false if get_tree().paused else true
-	elif Input.is_action_just_pressed("toggle_godmode"):
-		toggle_godmode()
-		
-		
-	var space_state = get_world_2d().direct_space_state
-	var ray_query_parameters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
-		position,
-		velocity
-	)
-	var result = space_state.intersect_ray(ray_query_parameters)
-	print(result)
-
-func toggle_godmode() -> void:
-	Main.godmode = !Main.godmode;
+	pass
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
@@ -68,11 +51,25 @@ func _physics_process(delta: float) -> void:
 	
 	if move_and_slide():
 		handle_collision()
+		
+	var space_state = get_world_2d().direct_space_state
+	var ray_query_parameters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
+		position,
+		position + velocity
+	)
+	var result = space_state.intersect_ray(ray_query_parameters)
 
 func handle_movement(delta: float) -> void:
+	handle_shooting()
 	apply_gravity(delta)
 	handle_jump()
 	move()
+
+func handle_shooting() -> void:
+	if Input.is_action_just_pressed("shoot"):
+		var main: Main = $"..";
+		main.spawn_bullet(self)
+	
 
 func apply_gravity(delta: float) -> void:
 	# Add the gravity.
@@ -92,11 +89,9 @@ func handle_jump() -> void:
 func jump() -> void:
 	var do_jump: bool = false
 	
-	if Main.godmode:
-		do_jump = true
-	elif is_on_floor():
-		do_jump = true
-	elif jump_count > 0 && jump_count < max_jumps && !is_on_floor():
+	if Main.godmode \
+	  || is_on_floor()\
+	  || (jump_count > 0 && jump_count < max_jumps && !is_on_floor()):
 		do_jump = true
 	
 	if !do_jump:
@@ -115,9 +110,7 @@ func move() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func handle_ff() -> void:
-	if !FF_ON:
-		return
-	elif joypad == null || FF_INTENSITY == 0:
+	if !FF_ON || FF_INTENSITY == 0.0 || joypad == null:
 		return
 	
 	if velocity.y == 0 && last_velocity.y > 0 && is_on_floor():
@@ -158,14 +151,10 @@ func handle_collision() -> void:
 	
 	for index in get_slide_collision_count():
 		var collision: KinematicCollision2D = get_slide_collision(index)
-		print(collision.get_collider())
 		if collision.get_collider() is Enemy:
 			handle_enemy_collision(collision)
 
 func handle_enemy_collision(collision: KinematicCollision2D) -> void:
-	var enemy: Enemy = collision.get_collider()
+	var enemy: Enemy = collision.get_collider() as Enemy
 	var shape: CollisionPolygon2D = enemy.get_node("Hitbox")
-	
-	if collision.get_angle() <= 0.50:
-		enemy.queue_free()
 	

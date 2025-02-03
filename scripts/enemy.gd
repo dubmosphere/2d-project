@@ -4,8 +4,6 @@ extends Entity
 const SPEED: float = 300.0
 const JUMP_VELOCITY: float = -400.0
 
-var health: int = 100
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
