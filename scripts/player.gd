@@ -1,12 +1,14 @@
-extends CharacterBody2D
+class_name Player
+extends Entity
 
-const World = preload("res://scripts/world.gd")
+@export var player_number: int
+@export var player_joypad: int
 
-const SPEED = 570.0
-const JUMP_VELOCITY = -610.0
-const MAX_DOWN_SPEED = 1500.0
-const FF_ON = true
-const FF_INTENSITY = 1.0
+const SPEED: float = 570.0
+const JUMP_VELOCITY: float = -610.0
+const MAX_DOWN_SPEED: float = 1500.0
+const FF_ON: bool = true
+const FF_INTENSITY: float = 0.5
 
 var animation_tree: AnimationTree
 var animation_state_machine: AnimationNodeStateMachinePlayback
@@ -14,18 +16,28 @@ var jump_sound: AudioStreamPlayer2D
 
 var joypads: Array
 var joypad = null
-var max_jumps = 2
-var jump_count = 0
-var last_velocity = Vector2(0.0, 0.0)
+var max_jumps: int = 2
+var jump_count: int = 0
+var last_velocity: Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
 	animation_tree = $Sprite/AnimationTree as AnimationTree
 	animation_state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 	jump_sound = $JumpSound as AudioStreamPlayer2D
+	
 	joypads = Input.get_connected_joypads()
-	if joypads.size():
-		joypad = Input.get_connected_joypads()[0]
+	for j in joypads:
+		if(joypad == player_joypad):
+			joypad = player_joypad
+		
 	initialize_animations()
+
+func initialize_animations() -> void:
+	animation_tree.set("parameters/idle/blend_position", 1)
+	animation_tree.set("parameters/walk/blend_position", 1)
+	animation_tree.set("parameters/jump_up/blend_position", 1)
+	animation_tree.set("parameters/jump_down/blend_position", 1)
+	animation_state_machine.travel("idle")
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -34,6 +46,18 @@ func _process(delta: float) -> void:
 		get_tree().paused = false if get_tree().paused else true
 	elif Input.is_action_just_pressed("toggle_godmode"):
 		toggle_godmode()
+		
+		
+	var space_state = get_world_2d().direct_space_state
+	var ray_query_parameters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
+		position,
+		velocity
+	)
+	var result = space_state.intersect_ray(ray_query_parameters)
+	print(result)
+
+func toggle_godmode() -> void:
+	Main.godmode = !Main.godmode;
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
@@ -42,14 +66,8 @@ func _physics_process(delta: float) -> void:
 	
 	last_velocity = velocity
 	
-	move_and_slide()
-
-func initialize_animations() -> void:
-	animation_tree.set("parameters/idle/blend_position", 1)
-	animation_tree.set("parameters/walk/blend_position", 1)
-	animation_tree.set("parameters/jump_up/blend_position", 1)
-	animation_tree.set("parameters/jump_down/blend_position", 1)
-	animation_state_machine.travel("idle")
+	if move_and_slide():
+		handle_collision()
 
 func handle_movement(delta: float) -> void:
 	apply_gravity(delta)
@@ -72,13 +90,13 @@ func handle_jump() -> void:
 		jump_count = 0
 
 func jump() -> void:
-	var do_jump = false
+	var do_jump: bool = false
 	
-	if World.godmode:
+	if Main.godmode:
 		do_jump = true
-	if is_on_floor():
+	elif is_on_floor():
 		do_jump = true
-	if jump_count > 0 && jump_count < max_jumps && !is_on_floor():
+	elif jump_count > 0 && jump_count < max_jumps && !is_on_floor():
 		do_jump = true
 	
 	if !do_jump:
@@ -90,7 +108,7 @@ func jump() -> void:
 
 func move() -> void:
 	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
+	var direction: float = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -99,12 +117,11 @@ func move() -> void:
 func handle_ff() -> void:
 	if !FF_ON:
 		return
-
-	if joypad == null || FF_INTENSITY == 0:
+	elif joypad == null || FF_INTENSITY == 0:
 		return
 	
 	if velocity.y == 0 && last_velocity.y > 0 && is_on_floor():
-		var ffAmount = get_ff_amount(FF_INTENSITY, MAX_DOWN_SPEED, last_velocity.y)
+		var ffAmount: float = get_ff_amount(FF_INTENSITY, MAX_DOWN_SPEED, last_velocity.y)
 		Input.start_joy_vibration(joypad, ffAmount, ffAmount, ffAmount)
 
 func get_ff_amount(intensity, max_down_speed, down_speed) -> float:
@@ -135,5 +152,20 @@ func update_blend_positions() -> void:
 		animation_tree.set("parameters/jump_up/blend_position", velocity.x)
 		animation_tree.set("parameters/jump_down/blend_position", velocity.x)
 
-func toggle_godmode() -> void:
-	World.godmode = !World.godmode;
+func handle_collision() -> void:
+	if !get_slide_collision_count():
+		return
+	
+	for index in get_slide_collision_count():
+		var collision: KinematicCollision2D = get_slide_collision(index)
+		print(collision.get_collider())
+		if collision.get_collider() is Enemy:
+			handle_enemy_collision(collision)
+
+func handle_enemy_collision(collision: KinematicCollision2D) -> void:
+	var enemy: Enemy = collision.get_collider()
+	var shape: CollisionPolygon2D = enemy.get_node("Hitbox")
+	
+	if collision.get_angle() <= 0.50:
+		enemy.queue_free()
+	

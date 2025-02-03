@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba1247021qp6d"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_vc4el"]
+[ext_resource type="PackedScene" uid="uid://cm04mmmvwboov" path="res://scenes/templates/enemy.tscn" id="2_00pip"]
+[ext_resource type="PackedScene" uid="uid://b1yocmxgyedm0" path="res://scenes/templates/map.tscn" id="3_rnwjd"]
+[ext_resource type="PackedScene" uid="uid://jfm88e0ih882" path="res://scenes/templates/player.tscn" id="4_0usl1"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_vc4el")
+enemy_scene = ExtResource("2_00pip")
+
+[node name="Map" parent="." instance=ExtResource("3_rnwjd")]
+
+[node name="Player" parent="." instance=ExtResource("4_0usl1")]
+position = Vector2(-190, 263)
