@@ -10,10 +10,10 @@ const MAX_DOWN_SPEED: float = 1500.0
 const FF_ON: bool = true
 const FF_INTENSITY: float = 0.5
 
-var animation_tree: AnimationTree
-var animation_state_machine: AnimationNodeStateMachinePlayback
-var jump_sound: AudioStreamPlayer2D
+@onready var animation_tree: AnimationTree = $Sprite/AnimationTree
+@onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 
+var animation_state_machine: AnimationNodeStateMachinePlayback
 var joypads: Array
 var joypad = null
 var max_jumps: int = 2
@@ -21,10 +21,7 @@ var jump_count: int = 0
 var last_velocity: Vector2 = Vector2(0.0, 0.0)
 
 func _ready() -> void:
-	animation_tree = $Sprite/AnimationTree as AnimationTree
 	animation_state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
-	jump_sound = $JumpSound as AudioStreamPlayer2D
-	
 	joypads = Input.get_connected_joypads()
 	for j in joypads:
 		if(joypad == player_joypad):
