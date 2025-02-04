@@ -1,8 +1,12 @@
-[gd_scene load_steps=38 format=3 uid="uid://jfm88e0ih882"]
+[gd_scene load_steps=42 format=3 uid="uid://cm04mmmvwboov"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ffyuu"]
-[ext_resource type="Texture2D" uid="uid://nqabn0uxlbb8" path="res://media/images/spritesheets/spritesheet_gb.png" id="2_1enul"]
-[ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="3_3bpfg"]
+[ext_resource type="Texture2D" uid="uid://nqabn0uxlbb8" path="res://media/images/spritesheets/spritesheet_gb.png" id="1_ma7m8"]
+[ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_tbd5j"]
+[ext_resource type="Script" path="res://scripts/components/health_system.gd" id="2_28g2q"]
+[ext_resource type="Script" path="res://scripts/components/movement.gd" id="4_n3j0b"]
+[ext_resource type="Script" path="res://scripts/components/input_component.gd" id="4_nmmx2"]
+[ext_resource type="Script" path="res://scripts/components/ranged_weapon.gd" id="5_235nx"]
+[ext_resource type="PackedScene" uid="uid://ok187owkqej0" path="res://scenes/entities/bullet.tscn" id="6_b8bxm"]
 
 [sub_resource type="Animation" id="Animation_k1mqw"]
 length = 0.001
@@ -315,7 +319,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3wp8"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2lavb"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qpsnc"]
 states/Start/position = Vector2(232, 135)
 states/idle/node = SubResource("AnimationNodeBlendSpace1D_5eilo")
 states/idle/position = Vector2(402, 124)
@@ -326,21 +330,14 @@ states/jump_up/position = Vector2(402, 241)
 states/walk/node = SubResource("AnimationNodeBlendSpace1D_68a4b")
 states/walk/position = Vector2(658, 124)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "idle", "jump_up", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "jump_up", "jump_down", SubResource("AnimationNodeStateMachineTransition_kget7"), "jump_down", "idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "walk", "jump_up", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "jump_down", "walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
-graph_offset = Vector2(26, 56)
 
-[node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.1825, 0.1825)
-disable_mode = 2
-floor_stop_on_slope = false
-floor_constant_speed = true
-floor_max_angle = 0.804597
-floor_snap_length = 13.1
-safe_margin = 1.0
-script = ExtResource("1_ffyuu")
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.183, 0.183)
+script = ExtResource("1_tbd5j")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_1enul")
+texture = ExtResource("1_ma7m8")
 hframes = 4
 vframes = 4
 frame = 13
@@ -352,7 +349,7 @@ libraries = {
 speed_scale = 0.0
 
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
-tree_root = SubResource("AnimationNodeStateMachine_2lavb")
+tree_root = SubResource("AnimationNodeStateMachine_qpsnc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle/blend_position = -0.610403
 parameters/jump_down/blend_position = 0
@@ -364,16 +361,29 @@ position = Vector2(0, 27.3973)
 scale = Vector2(6.8719, 17.0124)
 polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
-[node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(1.4, 1.4)
-position_smoothing_speed = 7.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_horizontal_offset = 1.0
-drag_vertical_offset = -1.0
-drag_left_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.3
+[node name="Components" type="Node" parent="."]
 
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_3bpfg")
+[node name="HealthSystem" type="Node" parent="Components"]
+script = ExtResource("2_28g2q")
+health = 100
+
+[node name="Input" type="Node" parent="Components"]
+script = ExtResource("4_nmmx2")
+
+[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("4_n3j0b")
+actor = NodePath("../..")
+input = NodePath("../Input")
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
+
+[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("5_235nx")
+actor = NodePath("../..")
+input = NodePath("../Input")
+damage = 10
+projectile_velocity = 800.0
+bullets = 50
+bullet_scene = ExtResource("6_b8bxm")

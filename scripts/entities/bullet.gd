@@ -24,20 +24,20 @@ func _physics_process(delta: float) -> void:
 	var velocity: Vector2 = direction * SPEED
 	position += velocity * delta
 
-
 func _on_body_entered(body: Node2D) -> void:
 	# Do not do anything if colliding with shooting player
 	if entity == (body as Entity):
+		return
+	
+	if body is Player && Main.godmode:
 		return
 	
 	queue_free()
 	if body is not Entity:
 		return
 	
-	if body is Player && Main.godmode:
-		return
-	
 	var entity: Entity = body as Entity
-	entity.health -= DAMAGE
-	if entity.health <= 0:
+	var health_system = entity.get_node("Components/HealthSystem") as HealthSystem
+	health_system.health -= DAMAGE
+	if health_system.health <= 0:
 		entity.queue_free()

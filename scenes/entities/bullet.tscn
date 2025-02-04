@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ok187owkqej0"]
 
-[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_ereei"]
+[ext_resource type="Script" path="res://scripts/entities/bullet.gd" id="1_ereei"]
 [ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="2_gloog"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bkwq"]
