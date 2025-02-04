@@ -390,8 +390,9 @@ stream = ExtResource("3_3bpfg")
 script = ExtResource("4_xctth")
 health = 100
 
-[node name="PlayerInput" type="Node" parent="Components"]
+[node name="PlayerInput" type="Node" parent="Components" node_paths=PackedStringArray("player")]
 script = ExtResource("5_gaf7g")
+player = NodePath("../..")
 
 [node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
 script = ExtResource("6_d6hly")

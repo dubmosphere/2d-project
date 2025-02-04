@@ -6,6 +6,7 @@ extends Entity
 @onready var animation_tree: AnimationTree = $Sprite/AnimationTree
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
 @onready var input: PlayerInput = $Components/PlayerInput
+@onready var movement: Movement = $Components/Movement
 
 var animation_state_machine: AnimationNodeStateMachinePlayback
 
@@ -26,7 +27,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_animations()
-	if input.jump:
+	if movement.just_jumped:
 		jump_sound.play()
 
 func handle_animations() -> void:

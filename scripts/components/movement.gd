@@ -12,29 +12,25 @@ var jump_count: int = 0
 var velocity: Vector2 = Vector2(0.0, 0.0)
 var last_velocity: Vector2 = Vector2(0.0, 0.0)
 var just_landed: bool = false
+var just_jumped: bool = false
 var impact_velocity: Vector2 = Vector2(0.0, 0.0)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	print("ME 1")
 	velocity = actor.velocity
 	handle_movement(delta)
-	handle_landing()
-	
+
 	last_velocity = velocity
-		
 	actor.velocity = velocity
-	
+
 	if actor.move_and_slide() && actor.has_method("handle_collision"):
 		actor.handle_collision(delta)
 
 func handle_movement(delta: float) -> void:
 	apply_gravity(delta)
 	handle_jump()
+	handle_landing()
 	move()
 
 func apply_gravity(delta: float, force: bool = false) -> void:
@@ -46,6 +42,7 @@ func apply_gravity(delta: float, force: bool = false) -> void:
 		velocity.y = max_down_speed
 
 func handle_jump() -> void:
+	just_jumped = false
 	# Handle jump.
 	if input.jump:
 		jump()
@@ -65,14 +62,7 @@ func jump() -> void:
 	
 	velocity.y = jump_velocity
 	jump_count += 1
-
-func move() -> void:
-	# Get the input direction and handle the movement/deceleration.
-	var direction: float = input.direction
-	if direction:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+	just_jumped = true
 
 func handle_landing() -> void:
 	if velocity.y == 0 && last_velocity.y > 0 && actor.is_on_floor():
@@ -82,3 +72,11 @@ func handle_landing() -> void:
 		if impact_velocity.y > 0:
 			impact_velocity.y = 0
 		just_landed = false
+
+func move() -> void:
+	# Get the input direction and handle the movement/deceleration.
+	var direction: float = input.direction
+	if direction:
+		velocity.x = direction * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)

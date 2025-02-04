@@ -1,7 +1,7 @@
 class_name PlayerInput
 extends InputComponent
 
-@export var player_joypad: int
+@export var player: Player
 
 var joypads: Array
 var joypad: int
@@ -10,8 +10,8 @@ var joypad: int
 func _ready() -> void:
 	joypads = Input.get_connected_joypads()
 	for j in joypads:
-		if(joypad == player_joypad):
-			joypad = player_joypad
+		if(joypad == player.player_number):
+			joypad = player.player_number
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
