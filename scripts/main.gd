@@ -32,12 +32,9 @@ func spawn_bullet(entity: Entity) -> void:
 		entity.bullets = 20
 	
 	var mouse_position: Vector2 = $Map.get_global_mouse_position()
-	var offset_direction: Vector2 = entity.position.direction_to(mouse_position)
-	var bullet_offset: Vector2 = Vector2(30, 55) * offset_direction
-	var bullet_position: Vector2 = entity.position + bullet_offset
-	var move_direction: Vector2 = bullet_position.direction_to(mouse_position)
+	var move_direction: Vector2 = entity.position.direction_to(mouse_position)
 	var bullet: Bullet = bullet_scene.instantiate() as Bullet
 	bullet.entity = entity
-	bullet.position = bullet_position
+	bullet.position = entity.position
 	bullet.direction = move_direction
 	add_child(bullet)

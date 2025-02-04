@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	last_velocity = velocity
 	
 	if move_and_slide():
-		handle_collision()
+		handle_collision(delta)
 		
 	var space_state = get_world_2d().direct_space_state
 	var ray_query_parameters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
@@ -71,9 +71,9 @@ func handle_shooting() -> void:
 		main.spawn_bullet(self)
 	
 
-func apply_gravity(delta: float) -> void:
+func apply_gravity(delta: float, force: bool = false) -> void:
 	# Add the gravity.
-	if !is_on_floor():
+	if !is_on_floor() || (force):
 		velocity += get_gravity() * delta
 	
 	if velocity.y > MAX_DOWN_SPEED:
@@ -145,7 +145,7 @@ func update_blend_positions() -> void:
 		animation_tree.set("parameters/jump_up/blend_position", velocity.x)
 		animation_tree.set("parameters/jump_down/blend_position", velocity.x)
 
-func handle_collision() -> void:
+func handle_collision(delta: float) -> void:
 	if !get_slide_collision_count():
 		return
 	
@@ -153,8 +153,16 @@ func handle_collision() -> void:
 		var collision: KinematicCollision2D = get_slide_collision(index)
 		if collision.get_collider() is Enemy:
 			handle_enemy_collision(collision)
+		if collision.get_collider() is TileMapLayer:
+			handle_tile_collision(collision, delta)
 
 func handle_enemy_collision(collision: KinematicCollision2D) -> void:
 	var enemy: Enemy = collision.get_collider() as Enemy
 	var shape: CollisionPolygon2D = enemy.get_node("Hitbox")
 	
+func handle_tile_collision(collision: KinematicCollision2D, delta: float) -> void:
+	var normal: Vector2 = collision.get_normal()
+	var is_on_slope: bool = normal.y != -1
+	# todo: check angle...
+	if is_on_slope && velocity.y < 0:
+		velocity.y = 0.0
