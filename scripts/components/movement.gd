@@ -17,7 +17,6 @@ var impact_velocity: Vector2 = Vector2(0.0, 0.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	print("ME 1")
 	velocity = actor.velocity
 	handle_movement(delta)
 

@@ -23,7 +23,7 @@ func spawn_bullet() -> void:
 	if Main.godmode:
 		bullets = 20
 	
-	var mouse_position: Vector2 = get_tree().root.get_node("Main/Map").get_global_mouse_position()
+	var mouse_position: Vector2 = get_node("/root/Main/HBoxContainer/SubViewportContainer1/SubViewport1/Map").get_global_mouse_position()
 	var move_direction: Vector2 = actor.position.direction_to(mouse_position)
 	var bullet: Bullet = bullet_scene.instantiate() as Bullet
 	bullet.entity = actor

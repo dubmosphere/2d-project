@@ -8,7 +8,8 @@ static var godmode: bool = false
 func _ready() -> void:
 	var enemy: Enemy = enemy_scene.instantiate() as Enemy
 	var spawnLocation: Vector2 = Vector2(0.0, 0.0)
-	
+	var world = $HBoxContainer/SubViewportContainer1/SubViewport1.find_world_2d()
+	$HBoxContainer/SubViewportContainer2/SubViewport2.world_2d = world
 	enemy.position = spawnLocation
 	
 	add_child(enemy)
