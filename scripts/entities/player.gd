@@ -23,9 +23,6 @@ func initialize_animations() -> void:
 	animation_state_machine.travel("idle")
 
 func _process(delta: float) -> void:
-	pass
-
-func _physics_process(delta: float) -> void:
 	handle_animations()
 	if movement.just_jumped:
 		jump_sound.play()

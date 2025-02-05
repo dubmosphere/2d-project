@@ -13,7 +13,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	handle_ff()
+	if input.joypad != null:
+		handle_ff()
 
 func handle_ff() -> void:
 	if !on || intensity == 0.0 || input.joypad == null:
