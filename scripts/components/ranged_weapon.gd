@@ -9,7 +9,11 @@ extends Node
 @export var bullet_scene: PackedScene
 
 @onready var sub_viewport: SubViewport = $/root/Main/VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1
-@onready var map: Map = $/root/Main/VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1/Map
+@onready var map: Map = $/root/Main/Map
+
+func _ready() -> void:
+	if sub_viewport:
+		map = sub_viewport.get_node('Map')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -25,10 +29,8 @@ func spawn_bullet() -> void:
 	bullets -= 1
 	if Main.godmode:
 		bullets = 9999
-	var mouse_position: Vector2 = map.get_global_mouse_position()
-	var move_direction: Vector2 = actor.position.direction_to(mouse_position)
 	var bullet: Bullet = bullet_scene.instantiate()
 	bullet.entity = actor
 	bullet.position = actor.position
-	bullet.direction = move_direction
-	sub_viewport.add_child(bullet)
+	bullet.direction = input.aim_direction
+	map.get_parent().add_child(bullet)

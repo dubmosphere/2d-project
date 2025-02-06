@@ -335,6 +335,11 @@ transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_
 scale = Vector2(0.183, 0.183)
 script = ExtResource("1_tbd5j")
 
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 27.3973)
+scale = Vector2(6.8719, 17.0124)
+polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
+
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_ma7m8")
@@ -355,11 +360,6 @@ parameters/idle/blend_position = -0.610403
 parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0
 parameters/walk/blend_position = 0
-
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 27.3973)
-scale = Vector2(6.8719, 17.0124)
-polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
 [node name="Components" type="Node" parent="."]
 

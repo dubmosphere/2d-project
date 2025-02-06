@@ -13,14 +13,18 @@ static var godmode: bool = false
 
 func _ready() -> void:
 	var enemy: Enemy = enemy_scene.instantiate() as Enemy
-	var spawn_location: Vector2 = Vector2(800.0, 0.0)
-	var world = sub_viewport1.find_world_2d()
-	sub_viewport2.world_2d = world
-	sub_viewport3.world_2d = world
-	sub_viewport4.world_2d = world
+	var spawn_location: Vector2 = Vector2(-216.0, 230.0)
+	
 	enemy.position = spawn_location
 	
-	sub_viewport1.add_child(enemy)
+	if sub_viewport1:
+		var world = sub_viewport1.find_world_2d()
+		sub_viewport2.world_2d = world
+		sub_viewport3.world_2d = world
+		sub_viewport4.world_2d = world
+		sub_viewport1.add_child(enemy)
+	else:
+		$Map.add_child(enemy)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):

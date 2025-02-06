@@ -344,8 +344,14 @@ floor_snap_length = 13.1
 safe_margin = 1.0
 script = ExtResource("1_ffyuu")
 
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 27.3973)
+scale = Vector2(6.8719, 17.0124)
+polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
+
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1, 1)
 texture = ExtResource("2_1enul")
 hframes = 4
 vframes = 4
@@ -364,14 +370,6 @@ parameters/idle/blend_position = -0.610403
 parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0
 parameters/walk/blend_position = 0
-
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 27.3973)
-scale = Vector2(6.8719, 17.0124)
-polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
-
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_3bpfg")
 
 [node name="Components" type="Node" parent="."]
 
@@ -416,3 +414,7 @@ drag_vertical_offset = -1.0
 drag_left_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.3
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1, 1)
+stream = ExtResource("3_3bpfg")
