@@ -15,28 +15,25 @@ var just_landed: bool = false
 var just_jumped: bool = false
 var impact_velocity: Vector2 = Vector2(0.0, 0.0)
 
-func _input(event):
-	if input.jump:
-		jump()
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	velocity = actor.velocity
+	
 	apply_gravity(delta)
 	handle_jump()
 	handle_landing()
-	move()
-
+	handle_movement()
+	
 	actor.velocity = velocity
-
+	
 	if actor.move_and_slide() && actor.has_method("handle_collision"):
 		actor.handle_collision(delta)
-
+	
 	last_velocity = velocity
 
 func apply_gravity(delta: float, force: bool = false) -> void:
 	# Add the gravity.
-	if !actor.is_on_floor() || (force):
+	if !actor.is_on_floor() || force:
 		velocity += actor.get_gravity() * delta
 	
 	if velocity.y > max_down_speed:
@@ -60,7 +57,6 @@ func jump() -> void:
 	
 	if !do_jump:
 		return
-	
 	velocity.y = jump_velocity
 	jump_count += 1
 	just_jumped = true
@@ -74,7 +70,7 @@ func handle_landing() -> void:
 			impact_velocity.y = 0
 		just_landed = false
 
-func move() -> void:
+func handle_movement() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var direction: float = input.direction
 	if direction:
