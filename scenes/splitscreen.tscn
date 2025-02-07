@@ -35,7 +35,7 @@ stretch = true
 handle_input_locally = false
 audio_listener_enable_2d = true
 sdf_scale = 0
-size = Vector2i(639, 720)
+size = Vector2i(639, 359)
 render_target_update_mode = 4
 
 [node name="Map" parent="VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("4_5asch")]
@@ -51,7 +51,7 @@ stretch = true
 [node name="SubViewport2" type="SubViewport" parent="VBoxContainer/HBoxContainer/SubViewportContainer2"]
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(639, 720)
+size = Vector2i(639, 359)
 render_target_update_mode = 4
 
 [node name="Player2" parent="VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("5_5ljcd")]
@@ -59,7 +59,6 @@ position = Vector2(213, 320)
 player_number = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -73,8 +72,8 @@ stretch = true
 [node name="SubViewport3" type="SubViewport" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3"]
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(2, 2)
-render_target_update_mode = 0
+size = Vector2i(639, 359)
+render_target_update_mode = 4
 
 [node name="Player3" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3" instance=ExtResource("5_5ljcd")]
 position = Vector2(-745, 328)
@@ -88,8 +87,8 @@ stretch = true
 [node name="SubViewport4" type="SubViewport" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4"]
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(2, 2)
-render_target_update_mode = 0
+size = Vector2i(639, 359)
+render_target_update_mode = 4
 
 [node name="Player4" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4" instance=ExtResource("5_5ljcd")]
 position = Vector2(-1123, 327)
