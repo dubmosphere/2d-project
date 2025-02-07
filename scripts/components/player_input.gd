@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	
 		direction = Input.get_axis("left_" + joypad_str, "right_" + joypad_str)
 	
-		#todo: Make this vector work without adjusting the speed of the projectile
 		var input_aim_direction: Vector2 = Input.get_vector(
 			"aim_left_" + joypad_str,
 			"aim_right_" + joypad_str,
