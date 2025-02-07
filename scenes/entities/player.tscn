@@ -199,7 +199,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11]
+"values": [11, 8, 9, 10]
 }
 
 [sub_resource type="Animation" id="Animation_wg6jv"]
@@ -335,6 +335,7 @@ transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(26, 56)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(0.1825, 0.1825)
 disable_mode = 2
 floor_stop_on_slope = false
@@ -365,7 +366,7 @@ speed_scale = 0.0
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource("AnimationNodeStateMachine_2lavb")
 anim_player = NodePath("../AnimationPlayer")
-parameters/idle/blend_position = -0.610403
+parameters/idle/blend_position = 0.0
 parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0
 parameters/walk/blend_position = 0

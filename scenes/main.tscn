@@ -12,10 +12,13 @@ enemy_scene = ExtResource("2_00pip")
 bullet_scene = ExtResource("5_qwghe")
 
 [node name="Map" parent="." instance=ExtResource("3_rnwjd")]
+z_index = 2
 
 [node name="Player" parent="." instance=ExtResource("4_0usl1")]
+z_index = 1
 position = Vector2(400, 371)
 
 [node name="Player2" parent="." instance=ExtResource("4_0usl1")]
+z_index = 1
 position = Vector2(-540, 404)
 player_number = 1

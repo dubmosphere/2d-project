@@ -332,6 +332,7 @@ states/walk/position = Vector2(658, 124)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "idle", "jump_up", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "jump_up", "jump_down", SubResource("AnimationNodeStateMachineTransition_kget7"), "jump_down", "idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "walk", "jump_up", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "jump_down", "walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
 
 [node name="Enemy" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(0.183, 0.183)
 script = ExtResource("1_tbd5j")
 

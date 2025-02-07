@@ -24,7 +24,7 @@ func _ready() -> void:
 		sub_viewport4.world_2d = world
 		sub_viewport1.add_child(enemy)
 	else:
-		$Map.add_child(enemy)
+		$/root/Main.add_child(enemy)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
