@@ -7,14 +7,13 @@ extends InputComponent
 @onready var map: Map = $/root/Main/Map
 
 var joypad = null
-var last_aim_direction: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if sub_viewport:
 		map = sub_viewport.get_node('Map')
 	for j in Input.get_connected_joypads():
-		if(j == player.player_number):
+		if j == player.player_number:
 			joypad = j
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,17 +26,17 @@ func _physics_process(delta: float) -> void:
 	
 		direction = Input.get_axis("left_" + joypad_str, "right_" + joypad_str)
 	
-		var input_aim_direction: Vector2
-		input_aim_direction.x = Input.get_axis("aim_left_" + joypad_str, "aim_right_" + joypad_str)
-		input_aim_direction.y = -Input.get_axis("aim_down_" + joypad_str, "aim_up_" + joypad_str)
-		print(input_aim_direction, input_aim_direction.angle_to(Vector2(0, 0)))
 		#todo: Make this vector work without adjusting the speed of the projectile
+		var input_aim_direction: Vector2 = Input.get_vector(
+			"aim_left_" + joypad_str,
+			"aim_right_" + joypad_str,
+			"aim_up_" + joypad_str,
+			"aim_down_" + joypad_str
+		)
 	
 		if input_aim_direction != Vector2.ZERO:
-			aim_direction = input_aim_direction
+			aim_direction = input_aim_direction.normalized()
 		
-		if click:
+		if player.player_number == 0 && click:
 			var mouse_position: Vector2 = map.get_global_mouse_position()
 			aim_direction = player.position.direction_to(mouse_position)
-	
-		last_aim_direction = aim_direction

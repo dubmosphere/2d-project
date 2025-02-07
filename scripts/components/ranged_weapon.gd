@@ -30,7 +30,7 @@ func spawn_bullet() -> void:
 	if Main.godmode:
 		bullets = 9999
 	var bullet: Bullet = bullet_scene.instantiate()
-	bullet.entity = actor
+	bullet.actor = actor
 	bullet.position = actor.position
 	bullet.direction = input.aim_direction
 	map.get_parent().add_child(bullet)

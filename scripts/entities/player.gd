@@ -12,7 +12,7 @@ var animation_state_machine: AnimationNodeStateMachinePlayback
 
 func _ready() -> void:
 	animation_state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
-		
+
 	initialize_animations()
 
 func initialize_animations() -> void:
@@ -68,5 +68,5 @@ func handle_tile_collision(collision: KinematicCollision2D, delta: float) -> voi
 	var normal: Vector2 = collision.get_normal()
 	var is_on_slope: bool = normal.y != -1
 	# todo: check angle...
-	if is_on_slope && velocity.y < 0:
+	if !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.y < 0:
 		velocity.y = 0.0

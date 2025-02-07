@@ -15,22 +15,24 @@ var just_landed: bool = false
 var just_jumped: bool = false
 var impact_velocity: Vector2 = Vector2(0.0, 0.0)
 
+func _input(event):
+	if input.jump:
+		jump()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	velocity = actor.velocity
-	handle_movement(delta)
+	apply_gravity(delta)
+	handle_jump()
+	handle_landing()
+	move()
 
-	last_velocity = velocity
 	actor.velocity = velocity
 
 	if actor.move_and_slide() && actor.has_method("handle_collision"):
 		actor.handle_collision(delta)
 
-func handle_movement(delta: float) -> void:
-	apply_gravity(delta)
-	handle_jump()
-	handle_landing()
-	move()
+	last_velocity = velocity
 
 func apply_gravity(delta: float, force: bool = false) -> void:
 	# Add the gravity.

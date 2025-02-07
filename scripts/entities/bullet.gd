@@ -5,7 +5,7 @@ const SPEED: float = 1000.0
 const DAMAGE: float = 10.0
 const LIVE_TIME = 10.0
 
-var entity: Entity
+var actor: Entity
 var direction: Vector2 = Vector2(0.0, 0.0)
 
 var timer = 0.0
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	# Do not do anything if colliding with shooting player
-	if entity == (body as Entity):
+	if actor == (body as Entity):
 		return
 	
 	if body is Player && Main.godmode:
@@ -36,8 +36,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is not Entity:
 		return
 	
-	var entity: Entity = body as Entity
-	var health_system = entity.get_node("Components/HealthSystem") as HealthSystem
-	health_system.health -= DAMAGE
+	var target_actor: Entity = body
+	var health_system: HealthSystem = target_actor.get_node("Components/HealthSystem")
+	var weapon: RangedWeapon = actor.get_node("Components/RangedWeapon")
+	
+	health_system.apply_dammage(weapon.damage)
+	
 	if health_system.health <= 0:
-		entity.queue_free()
+		target_actor.queue_free()
