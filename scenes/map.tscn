@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://b1yocmxgyedm0"]
+[gd_scene load_steps=7 format=4 uid="uid://b1yocmxgyedm0"]
 
 [ext_resource type="Texture2D" uid="uid://cftx6b6d7m5ux" path="res://media/images/tilesets/tileset_default.png" id="1_d42ml"]
 [ext_resource type="Script" path="res://scripts/map.gd" id="1_wn4ty"]
+[ext_resource type="Texture2D" uid="uid://1uals50182cy" path="res://media/images/tilesets/Pixel Art Tiles and Backgrounds - Woods/Backgrounds/BACKGROUND.png" id="3_dticg"]
+[ext_resource type="Texture2D" uid="uid://cskltiyiliyno" path="res://media/images/tilesets/Pixel Art Tiles and Backgrounds - Woods/Backgrounds/BUSH - BACKGROUND.png" id="4_mqbxy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1syk1"]
 texture = ExtResource("1_d42ml")
@@ -382,3 +384,19 @@ position = Vector2(223, 535)
 tile_set = SubResource("TileSet_56bii")
 use_kinematic_bodies = true
 navigation_visibility_mode = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(-626, 1733)
+scale = Vector2(30.5195, 13.4757)
+texture = ExtResource("3_dticg")
+
+[node name="Bush-Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(-1051, 1702)
+scale = Vector2(13.0521, 13.0521)
+texture = ExtResource("4_mqbxy")
