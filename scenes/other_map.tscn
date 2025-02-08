@@ -690,11 +690,14 @@ texture = ExtResource("1_shiw7")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_oa12d")
 
-[node name="OtherMap" type="Node2D"]
+[node name="Main" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Map" type="TileMapLayer" parent="."]
+texture_filter = 3
 position = Vector2(124, 58)
+scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAD7////AQAOAAQAAAD8////AQAPAAQAAAD9////AQAQAAQAAAD+////AQARAAQAAAD3////AQAOAAQAAAD4////AQAPAAQAAAD5////AQAQAAQAAAD6////AQARAAQAAAD/////AQAOAAQAAAAAAP//AQAPAAQAAAABAP//AQAQAAQAAAACAP//AQARAAQAAAADAP//AQAOAAQAAAAEAP//AQAPAAQAAAAFAP//AQAQAAQAAAAGAP//AQARAAQAAADz////AQAOAAQAAAD0////AQAPAAQAAAD1////AQAQAAQAAAD2////AQARAAQAAAD0/wAAAQAPAAkAAAD1/wAAAQAQAAkAAAD2/wAAAQARAAkAAAD3/wAAAQASAAkAAAD4/wAAAQATAAkAAAD5/wAAAQAPAAkAAAD6/wAAAQAQAAkAAAD7/wAAAQARAAkAAAD8/wAAAQASAAkAAAD9/wAAAQATAAkAAAD+/wAAAQAPAAkAAAD//wAAAQAQAAkAAAAAAAAAAQARAAkAAAABAAAAAQAPAAkAAAACAAAAAQAQAAkAAAADAAAAAQARAAkAAAAEAAAAAQASAAkAAAAFAAAAAQATAAkAAAAGAAAAAQAVAAMAAADz/wAAAQASAAMAAAA=")
 tile_set = SubResource("TileSet_l8q1k")
 
 [node name="Player" parent="." instance=ExtResource("2_opoh0")]
+position = Vector2(-112, -36)

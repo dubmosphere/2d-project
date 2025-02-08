@@ -9,7 +9,7 @@ extends Node
 @export var bullet_scene: PackedScene
 
 @onready var sub_viewport: SubViewport = $/root/Main/VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1
-@onready var map: Map = $/root/Main/Map
+@onready var map = $/root/Main/Map
 
 func _ready() -> void:
 	if sub_viewport:

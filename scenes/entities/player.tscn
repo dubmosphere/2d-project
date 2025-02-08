@@ -509,7 +509,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
-scale = Vector2(0.1825, 0.1825)
 floor_stop_on_slope = false
 floor_constant_speed = true
 floor_max_angle = 0.804597
@@ -518,7 +517,7 @@ safe_margin = 1.0
 script = ExtResource("1_ffyuu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(6.95205, 6.95205)
+texture_filter = 3
 texture = ExtResource("2_ccijv")
 hframes = 4
 vframes = 8
@@ -559,9 +558,7 @@ parameters/jump_up/blend_position = 0
 parameters/walk/blend_position = 0
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
-visible = false
-position = Vector2(0, -5.47945)
-scale = Vector2(9.10527, 16.6873)
+scale = Vector2(1.29583, 2.32085)
 polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
 [node name="Components" type="Node" parent="."]

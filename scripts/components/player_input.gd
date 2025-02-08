@@ -4,7 +4,7 @@ extends InputComponent
 @export var player: Player
 
 @onready var sub_viewport: SubViewport = $/root/Main/VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1
-@onready var map: Map = $/root/Main/Map
+@onready var map = $/root/Main/Map
 
 var joypad = null
 
