@@ -16,10 +16,10 @@ func _ready() -> void:
 	initialize_animations()
 
 func initialize_animations() -> void:
-	animation_tree.set("parameters/idle/blend_position", 1)
-	animation_tree.set("parameters/walk/blend_position", 1)
-	animation_tree.set("parameters/jump_up/blend_position", 1)
-	animation_tree.set("parameters/jump_down/blend_position", 1)
+	animation_tree.set("parameters/idle/blend_position", input.aim_direction)
+	animation_tree.set("parameters/walk/blend_position", input.aim_direction)
+	animation_tree.set("parameters/jump_up/blend_position", input.aim_direction)
+	animation_tree.set("parameters/jump_down/blend_position", input.aim_direction)
 	animation_state_machine.travel("idle")
 
 func _process(delta: float) -> void:
@@ -43,11 +43,10 @@ func handle_animations() -> void:
 
 func update_blend_positions() -> void:
 	# Set blend positions by velocity.x
-	if velocity.x != 0:
-		animation_tree.set("parameters/idle/blend_position", velocity.x)
-		animation_tree.set("parameters/walk/blend_position", velocity.x)
-		animation_tree.set("parameters/jump_up/blend_position", velocity.x)
-		animation_tree.set("parameters/jump_down/blend_position", velocity.x)
+	animation_tree.set("parameters/idle/blend_position", input.aim_direction.x)
+	animation_tree.set("parameters/walk/blend_position", input.aim_direction.x)
+	animation_tree.set("parameters/jump_up/blend_position", input.aim_direction.x)
+	animation_tree.set("parameters/jump_down/blend_position", input.aim_direction.x)
 
 func handle_collision(delta: float) -> void:
 	if !get_slide_collision_count():

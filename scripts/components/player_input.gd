@@ -7,6 +7,7 @@ extends InputComponent
 @onready var map = $/root/Main/Map
 
 var joypad = null
+var last_mouse_position = Vector2(0.0, 0.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,10 +33,11 @@ func _physics_process(delta: float) -> void:
 			"aim_up_" + joypad_str,
 			"aim_down_" + joypad_str
 		)
+		
+		var mouse_position: Vector2 = map.get_global_mouse_position()
+		if player.player_number == 0 && last_mouse_position != mouse_position:
+			aim_direction = player.position.direction_to(mouse_position)
+			last_mouse_position = mouse_position
 	
 		if input_aim_direction != Vector2.ZERO:
 			aim_direction = input_aim_direction.normalized()
-		
-		if player.player_number == 0 && click:
-			var mouse_position: Vector2 = map.get_global_mouse_position()
-			aim_direction = player.position.direction_to(mouse_position)
