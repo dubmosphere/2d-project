@@ -251,7 +251,7 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3wp8"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2lavb"]
-states/Start/position = Vector2(232, 135)
+states/Start/position = Vector2(162, 129)
 states/idle/node = SubResource("AnimationNodeBlendSpace1D_5eilo")
 states/idle/position = Vector2(402, 124)
 states/jump_down/node = SubResource("AnimationNodeBlendSpace1D_mv78m")

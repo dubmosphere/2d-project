@@ -266,3 +266,7 @@ aim_up_3={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":3,"axis":3,"axis_value":-1.0,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=3
