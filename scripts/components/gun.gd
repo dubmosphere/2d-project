@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var quarter_circle: float = PI / 2
 	if global_rotation > quarter_circle || global_rotation < -quarter_circle:
 		flip_v = true

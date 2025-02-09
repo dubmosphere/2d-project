@@ -10,9 +10,11 @@ func _ready() -> void:
 	var enemy: Enemy = enemy_scene.instantiate() as Enemy
 	var spawn_location: Vector2 = Vector2(-216.0, 230.0)
 	
+	enemy.position = spawn_location
+	
 	add_child(enemy)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("pause"):

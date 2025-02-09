@@ -22,7 +22,7 @@ func initialize_animations() -> void:
 	animation_tree.set("parameters/jump_down/blend_position", input.aim_direction)
 	animation_state_machine.travel("idle")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	handle_animations()
 	if movement.just_jumped:
 		jump_sound.play()
@@ -48,24 +48,24 @@ func update_blend_positions() -> void:
 	animation_tree.set("parameters/jump_up/blend_position", input.aim_direction.x)
 	animation_tree.set("parameters/jump_down/blend_position", input.aim_direction.x)
 
-func handle_collision(delta: float) -> void:
+func handle_collision() -> void:
 	if !get_slide_collision_count():
 		return
 	
 	for index in get_slide_collision_count():
 		var collision: KinematicCollision2D = get_slide_collision(index)
-		if collision.get_collider() is Enemy:
-			handle_enemy_collision(collision)
+		#if collision.get_collider() is Enemy:
+			#handle_enemy_collision(collision)
 		if collision.get_collider() is TileMapLayer:
-			handle_tile_collision(collision, delta)
+			handle_tile_collision(collision)
 
-func handle_enemy_collision(collision: KinematicCollision2D) -> void:
-	var enemy: Enemy = collision.get_collider() as Enemy
-	var shape: CollisionPolygon2D = enemy.get_node("Hitbox")
+#func handle_enemy_collision(collision: KinematicCollision2D) -> void:
+	#var enemy: Enemy = collision.get_collider() as Enemy
+	#var shape: CollisionPolygon2D = enemy.get_node("Hitbox")
 	
-func handle_tile_collision(collision: KinematicCollision2D, delta: float) -> void:
+func handle_tile_collision(collision: KinematicCollision2D) -> void:
 	var normal: Vector2 = collision.get_normal()
 	var is_on_slope: bool = normal.y != -1
 	# todo: check angle...
-	if !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.y < 0:
+	if is_on_slope && !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.y < 0:
 		velocity.y = 0.0

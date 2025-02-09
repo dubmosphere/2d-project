@@ -8,10 +8,10 @@ func _ready() -> void:
 	if player_layer > 1 && input.joypad == null:
 		visibility_layer = 0
 	else:
-		visibility_layer = pow(2, player_layer)
+		visibility_layer = 2 ** player_layer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
 	if !input.joystick_aim:
 		visible = true

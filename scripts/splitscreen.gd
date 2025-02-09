@@ -21,7 +21,7 @@ func _ready() -> void:
 	enemy.position = spawn_location
 	sub_viewport1.add_child(enemy)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("pause"):

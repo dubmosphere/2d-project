@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if input.joypad != null:
 		handle_ff()
 
@@ -23,8 +23,8 @@ func handle_ff() -> void:
 		var ffAmount: float = get_ff_amount(intensity, movement.max_down_speed, movement.impact_velocity.y)
 		Input.start_joy_vibration(input.joypad, ffAmount, ffAmount, ffAmount)
 
-func get_ff_amount(intensity, max_down_speed, down_speed) -> float:
+func get_ff_amount(ff_intensity, max_down_speed, down_speed) -> float:
 	if max_down_speed == 0 || down_speed == 0:
 		return 0
 	
-	return intensity / max_down_speed * down_speed
+	return ff_intensity / max_down_speed * down_speed
