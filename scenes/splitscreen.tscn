@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpgaa4m0svt8a"]
+[gd_scene load_steps=7 format=3 uid="uid://dpgaa4m0svt8a"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_6cmbn"]
+[ext_resource type="Script" path="res://scripts/splitscreen.gd" id="1_ijt20"]
 [ext_resource type="PackedScene" uid="uid://cm04mmmvwboov" path="res://scenes/entities/enemy.tscn" id="2_u4uux"]
 [ext_resource type="PackedScene" uid="uid://ok187owkqej0" path="res://scenes/entities/bullet.tscn" id="3_s2b4k"]
 [ext_resource type="PackedScene" uid="uid://b1yocmxgyedm0" path="res://scenes/map.tscn" id="4_5asch"]
+[ext_resource type="PackedScene" uid="uid://dnxglqbpcfdjv" path="res://scenes/background.tscn" id="4_jjr7a"]
 [ext_resource type="PackedScene" uid="uid://jfm88e0ih882" path="res://scenes/entities/player.tscn" id="5_5ljcd"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_6cmbn")
+script = ExtResource("1_ijt20")
 enemy_scene = ExtResource("2_u4uux")
 bullet_scene = ExtResource("3_s2b4k")
 
@@ -36,8 +37,11 @@ transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
 sdf_scale = 0
-size = Vector2i(639, 359)
+canvas_cull_mask = 4294967267
+size = Vector2i(959, 539)
 render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("4_jjr7a")]
 
 [node name="Map" parent="VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("4_5asch")]
 
@@ -53,8 +57,11 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(639, 359)
+canvas_cull_mask = 4294967269
+size = Vector2i(959, 539)
 render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("4_jjr7a")]
 
 [node name="Player2" parent="VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("5_5ljcd")]
 position = Vector2(213, 320)
@@ -75,8 +82,11 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(639, 359)
+canvas_cull_mask = 4294967273
+size = Vector2i(959, 539)
 render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3" instance=ExtResource("4_jjr7a")]
 
 [node name="Player3" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3" instance=ExtResource("5_5ljcd")]
 position = Vector2(-745, 328)
@@ -91,8 +101,11 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
-size = Vector2i(639, 359)
+canvas_cull_mask = 4294967281
+size = Vector2i(959, 539)
 render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4" instance=ExtResource("4_jjr7a")]
 
 [node name="Player4" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4" instance=ExtResource("5_5ljcd")]
 position = Vector2(-1123, 327)

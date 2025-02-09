@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnxglqbpcfdjv"]
+
+[ext_resource type="Texture2D" uid="uid://1uals50182cy" path="res://media/images/tilesets/Pixel Art Tiles and Backgrounds - Woods/Backgrounds/BACKGROUND.png" id="1_b8o5j"]
+[ext_resource type="Texture2D" uid="uid://cskltiyiliyno" path="res://media/images/tilesets/Pixel Art Tiles and Backgrounds - Woods/Backgrounds/BUSH - BACKGROUND.png" id="2_3qlv0"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_offset = Vector2(-10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(-626, 1733)
+scale = Vector2(30.5195, 13.4757)
+texture = ExtResource("1_b8o5j")
+
+[node name="Bush-Background" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(-1051, 1702)
+scale = Vector2(13.0521, 13.0521)
+texture = ExtResource("2_3qlv0")

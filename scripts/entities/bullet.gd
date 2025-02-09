@@ -25,10 +25,6 @@ func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	# Do not do anything if colliding with shooting player
-	if actor == (body as Entity):
-		return
-	
 	if body is Player && Main.godmode:
 		return
 	

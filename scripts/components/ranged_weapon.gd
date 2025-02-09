@@ -2,6 +2,7 @@ class_name RangedWeapon
 extends Node
 
 @export var actor: Entity
+@export var offset: Marker2D
 @export var input: InputComponent
 @export var damage: int
 @export var projectile_velocity: float
@@ -31,6 +32,6 @@ func spawn_bullet() -> void:
 		bullets = 9999
 	var bullet: Bullet = bullet_scene.instantiate()
 	bullet.actor = actor
-	bullet.position = actor.position
+	bullet.position = offset.global_position
 	bullet.direction = input.aim_direction
 	map.get_parent().add_child(bullet)

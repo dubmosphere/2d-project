@@ -3,16 +3,12 @@ extends InputComponent
 
 @export var player: Player
 
-@onready var sub_viewport: SubViewport = $/root/Main/VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1
-@onready var map = $/root/Main/Map
-
 var joypad = null
-var last_mouse_position = Vector2(0.0, 0.0)
+var joystick_aim = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if sub_viewport:
-		map = sub_viewport.get_node('Map')
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for j in Input.get_connected_joypads():
 		if j == player.player_number:
 			joypad = j
@@ -24,7 +20,6 @@ func _physics_process(delta: float) -> void:
 		click = Input.is_action_just_pressed("click")
 		jump = Input.is_action_just_pressed("jump_" + joypad_str)
 		attack = Input.is_action_just_pressed("attack_" + joypad_str)
-	
 		direction = Input.get_axis("left_" + joypad_str, "right_" + joypad_str)
 	
 		var input_aim_direction: Vector2 = Input.get_vector(
@@ -34,10 +29,15 @@ func _physics_process(delta: float) -> void:
 			"aim_down_" + joypad_str
 		)
 		
-		var mouse_position: Vector2 = map.get_global_mouse_position()
-		if player.player_number == 0 && last_mouse_position != mouse_position:
+		if Input.get_last_mouse_velocity() != Vector2.ZERO:
+			joystick_aim = false
+		
+		if player.player_number == 0 && !joystick_aim:
+			var mouse_position: Vector2 = player.get_global_mouse_position()
 			aim_direction = player.position.direction_to(mouse_position)
-			last_mouse_position = mouse_position
-	
+		
 		if input_aim_direction != Vector2.ZERO:
 			aim_direction = input_aim_direction.normalized()
+			joystick_aim = true
+		
+		aim_angle = player.position.angle_to_point(player.position + aim_direction)

@@ -17,8 +17,10 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/defaults/default_clear_color=Color(0.425278, 0.651347, 0.999997, 1)
 
 [dotnet]
@@ -267,6 +269,18 @@ aim_up_3={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Main"
+2d_render/layer_2="Player 1 HUD"
+2d_render/layer_3="Player 2 HUD"
+2d_render/layer_4="Player 3 HUD"
+2d_render/layer_5="Player 4 HUD"
+
 [rendering]
 
-textures/canvas_textures/default_texture_filter=3
+textures/canvas_textures/default_texture_filter=0
+anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_taa=true
