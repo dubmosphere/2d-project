@@ -16,17 +16,19 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if player.player_number == 0 || joypad != null:
-		var joypad_str = str(player.player_number)
 		click = Input.is_action_just_pressed("click")
-		jump = Input.is_action_just_pressed("jump_" + joypad_str)
-		attack = Input.is_action_just_pressed("attack_" + joypad_str)
-		direction = Input.get_axis("left_" + joypad_str, "right_" + joypad_str)
+		jump = Input.is_action_just_pressed("jump_%s" % player.player_number)
+		attack = Input.is_action_just_pressed("attack_%s" % player.player_number)
+		direction = Input.get_axis(
+			"left_%s" % player.player_number,
+			"right_%s" % player.player_number
+		)
 	
 		var input_aim_direction: Vector2 = Input.get_vector(
-			"aim_left_" + joypad_str,
-			"aim_right_" + joypad_str,
-			"aim_up_" + joypad_str,
-			"aim_down_" + joypad_str
+			"aim_left_%s" % player.player_number,
+			"aim_right_%s" % player.player_number,
+			"aim_up_%s" % player.player_number,
+			"aim_down_%s" % player.player_number
 		)
 		
 		if Input.get_last_mouse_velocity() != Vector2.ZERO:
@@ -40,7 +42,7 @@ func _physics_process(delta: float) -> void:
 			aim_direction = input_aim_direction.normalized()
 			joystick_aim = true
 		
-		if joypad > 0:
+		if joypad != null && joypad > 0:
 			joystick_aim = true
 		
-		aim_angle = player.position.angle_to_point(player.position + aim_direction)
+		aim_angle = Vector2.ZERO.angle_to_point(aim_direction)
