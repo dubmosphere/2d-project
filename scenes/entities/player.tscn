@@ -374,22 +374,21 @@ health = 100
 script = ExtResource("5_gaf7g")
 player = NodePath("../..")
 
-[node name="Mouse" type="Sprite2D" parent="Components" node_paths=PackedStringArray("input")]
-visibility_layer = 0
-z_index = 100
-texture_filter = 1
-position = Vector2(52.2496, 85.2641)
-rotation = 1.02102
-texture = ExtResource("12_shrli")
-script = ExtResource("13_eeqp4")
-input = NodePath("../PlayerInput")
-
 [node name="AimAxis" type="Marker2D" parent="Components" node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
 
 [node name="BulletOffset" type="Marker2D" parent="Components/AimAxis"]
 position = Vector2(55, 0)
+
+[node name="Mouse" type="Sprite2D" parent="Components/AimAxis" node_paths=PackedStringArray("input")]
+visibility_layer = 0
+z_index = 100
+texture_filter = 1
+position = Vector2(100, 0)
+texture = ExtResource("12_shrli")
+script = ExtResource("13_eeqp4")
+input = NodePath("../../PlayerInput")
 
 [node name="Crosshair" type="Sprite2D" parent="Components/AimAxis" node_paths=PackedStringArray("input")]
 visibility_layer = 0
