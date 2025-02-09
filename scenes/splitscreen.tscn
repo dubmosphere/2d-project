@@ -22,17 +22,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 
-[node name="SubViewportContainer1" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="SubViewportContainer1" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer1"]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="SubViewport1" type="SubViewport" parent="VBoxContainer/HBoxContainer/SubViewportContainer1"]
+[node name="SubViewport1" type="SubViewport" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1"]
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
@@ -41,19 +41,19 @@ canvas_cull_mask = 4294967267
 size = Vector2i(959, 539)
 render_target_update_mode = 4
 
-[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("4_jjr7a")]
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("4_jjr7a")]
 
-[node name="Map" parent="VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("4_5asch")]
+[node name="Map" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("4_5asch")]
 
-[node name="Player" parent="VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1" instance=ExtResource("5_5ljcd")]
+[node name="Player" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("5_5ljcd")]
 position = Vector2(-208, 241)
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer1"]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch = true
 
-[node name="SubViewport2" type="SubViewport" parent="VBoxContainer/HBoxContainer/SubViewportContainer2"]
+[node name="SubViewport2" type="SubViewport" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2"]
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
@@ -61,9 +61,9 @@ canvas_cull_mask = 4294967269
 size = Vector2i(959, 539)
 render_target_update_mode = 4
 
-[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("4_jjr7a")]
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("4_jjr7a")]
 
-[node name="Player2" parent="VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("5_5ljcd")]
+[node name="Player2" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("5_5ljcd")]
 position = Vector2(213, 320)
 player_number = 1
 

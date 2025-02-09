@@ -1,3 +1,4 @@
+class_name Mouse
 extends Sprite2D
 
 @export var input: PlayerInput

@@ -374,40 +374,6 @@ health = 100
 script = ExtResource("5_gaf7g")
 player = NodePath("../..")
 
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("6_d6hly")
-actor = NodePath("../..")
-input = NodePath("../PlayerInput")
-speed = 650.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
-[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "offset", "input")]
-script = ExtResource("7_suntm")
-actor = NodePath("../..")
-offset = NodePath("../AimAxis/BulletOffset")
-input = NodePath("../PlayerInput")
-damage = 20
-projectile_velocity = 1000.0
-bullets = 9999
-bullet_scene = ExtResource("8_hnqrm")
-
-[node name="ForceFeedback" type="Node" parent="Components" node_paths=PackedStringArray("movement", "input")]
-script = ExtResource("8_jdtps")
-movement = NodePath("../Movement")
-input = NodePath("../PlayerInput")
-intensity = 1.0
-
-[node name="CigSmoke" type="GPUParticles2D" parent="Components" node_paths=PackedStringArray("input")]
-position = Vector2(27, -2)
-amount = 20
-amount_ratio = 0.7538
-process_material = SubResource("ParticleProcessMaterial_y0m2a")
-lifetime = 2.0
-script = ExtResource("10_vhbfr")
-input = NodePath("../PlayerInput")
-
 [node name="AimAxis" type="Marker2D" parent="Components" node_paths=PackedStringArray("input")]
 rotation = 1.02102
 script = ExtResource("10_eq31a")
@@ -441,6 +407,41 @@ z_index = 20
 texture_filter = 1
 texture = ExtResource("11_hd0ed")
 script = ExtResource("13_1ado3")
+
+[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("6_d6hly")
+actor = NodePath("../..")
+input = NodePath("../PlayerInput")
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
+
+[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "offset", "input")]
+script = ExtResource("7_suntm")
+actor = NodePath("../..")
+offset = NodePath("../AimAxis/BulletOffset")
+input = NodePath("../PlayerInput")
+damage = 20
+projectile_velocity = 1000.0
+bullets = 9999
+bullet_scene = ExtResource("8_hnqrm")
+
+[node name="ForceFeedback" type="Node" parent="Components" node_paths=PackedStringArray("movement", "input")]
+script = ExtResource("8_jdtps")
+movement = NodePath("../Movement")
+input = NodePath("../PlayerInput")
+on = true
+intensity = 1.0
+
+[node name="CigSmoke" type="GPUParticles2D" parent="Components" node_paths=PackedStringArray("input")]
+position = Vector2(27, -2)
+amount = 20
+amount_ratio = 0.7538
+process_material = SubResource("ParticleProcessMaterial_y0m2a")
+lifetime = 2.0
+script = ExtResource("10_vhbfr")
+input = NodePath("../PlayerInput")
 
 [node name="Camera" type="Camera2D" parent="."]
 light_mask = 0

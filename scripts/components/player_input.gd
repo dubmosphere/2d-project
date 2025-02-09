@@ -40,4 +40,7 @@ func _physics_process(delta: float) -> void:
 			aim_direction = input_aim_direction.normalized()
 			joystick_aim = true
 		
+		if joypad > 0:
+			joystick_aim = true
+		
 		aim_angle = player.position.angle_to_point(player.position + aim_direction)

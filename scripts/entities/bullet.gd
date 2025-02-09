@@ -8,10 +8,14 @@ const LIVE_TIME = 10.0
 var actor: Entity
 var direction: Vector2 = Vector2(0.0, 0.0)
 
-var timer = 0.0
+var damage: int = 0
+var timer: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if actor:
+		var weapon: RangedWeapon = actor.get_node("Components/RangedWeapon")
+		damage = weapon.damage
 	$ShotSound.play()
 
 func _process(delta: float) -> void:
@@ -34,9 +38,8 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	var target_actor: Entity = body
 	var health_system: HealthSystem = target_actor.get_node("Components/HealthSystem")
-	var weapon: RangedWeapon = actor.get_node("Components/RangedWeapon")
 	
-	health_system.apply_dammage(weapon.damage)
+	health_system.apply_dammage(damage)
 	
 	if health_system.health <= 0:
 		target_actor.queue_free()

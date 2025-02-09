@@ -1,3 +1,4 @@
+class_name Crosshair
 extends Sprite2D
 
 @export var input: PlayerInput

@@ -4,32 +4,34 @@ extends Node
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
 
-@onready var sub_viewport1: SubViewport = $VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1
-@onready var sub_viewport2: SubViewport = $VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2
+@onready var sub_viewport1: SubViewport = $VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1
+@onready var sub_viewport2: SubViewport = $VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2
 @onready var sub_viewport3: SubViewport = $VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3
 @onready var sub_viewport4: SubViewport = $VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4
-@onready var player: Player = $VBoxContainer/HBoxContainer/SubViewportContainer1/SubViewport1/Player
-@onready var player2: Player = $VBoxContainer/HBoxContainer/SubViewportContainer2/SubViewport2/Player2
-@onready var player3: Player = $VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3/Player3
-@onready var player4: Player = $VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4/Player4
+@onready var mouse: Mouse = $VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1/Player/Components/AimAxis/Mouse
+@onready var crosshair1: Crosshair = $VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1/Player/Components/AimAxis/Crosshair
+@onready var crosshair2: Crosshair = $VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2/Player2/Components/AimAxis/Crosshair
+@onready var crosshair3: Crosshair = $VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3/Player3/Components/AimAxis/Crosshair
+@onready var crosshair4: Crosshair = $VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4/Player4/Components/AimAxis/Crosshair
 
 static var godmode: bool = false
 
 func _ready() -> void:
-	var enemy: Enemy = enemy_scene.instantiate() as Enemy
-	var spawn_location: Vector2 = Vector2(-216.0, 230.0)
-	
-	enemy.position = spawn_location
-	
 	var world = sub_viewport1.find_world_2d()
 	sub_viewport2.world_2d = world
 	sub_viewport3.world_2d = world
 	sub_viewport4.world_2d = world
-	player.get_node("Components/AimAxis/Mouse").visibility_layer = 2
-	player.get_node("Components/AimAxis/Crosshair").visibility_layer = 2
-	player2.get_node("Components/AimAxis/Crosshair").visibility_layer = 4
-	player3.get_node("Components/AimAxis/Crosshair").visibility_layer = 8
-	player4.get_node("Components/AimAxis/Crosshair").visibility_layer = 16
+	
+	mouse.visibility_layer = 2
+	crosshair1.visibility_layer = 2
+	crosshair2.visibility_layer = 4
+	crosshair3.visibility_layer = 8
+	crosshair4.visibility_layer = 16
+	
+	var enemy: Enemy = enemy_scene.instantiate() as Enemy
+	var spawn_location: Vector2 = Vector2(-216.0, 230.0)
+	
+	enemy.position = spawn_location
 	sub_viewport1.add_child(enemy)
 
 func _process(delta: float) -> void:
