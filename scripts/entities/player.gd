@@ -12,7 +12,6 @@ var animation_state_machine: AnimationNodeStateMachinePlayback
 
 func _ready() -> void:
 	animation_state_machine = animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
-
 	initialize_animations()
 
 func initialize_animations() -> void:
@@ -54,15 +53,9 @@ func handle_collision() -> void:
 	
 	for index in get_slide_collision_count():
 		var collision: KinematicCollision2D = get_slide_collision(index)
-		#if collision.get_collider() is Enemy:
-			#handle_enemy_collision(collision)
 		if collision.get_collider() is TileMapLayer:
 			handle_tile_collision(collision)
 
-#func handle_enemy_collision(collision: KinematicCollision2D) -> void:
-	#var enemy: Enemy = collision.get_collider() as Enemy
-	#var shape: CollisionPolygon2D = enemy.get_node("Hitbox")
-	
 func handle_tile_collision(collision: KinematicCollision2D) -> void:
 	var normal: Vector2 = collision.get_normal()
 	var is_on_slope: bool = normal.y != -1
