@@ -1,16 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba1247021qp6d"]
+[gd_scene load_steps=6 format=3 uid="uid://ba1247021qp6d"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vc4el"]
 [ext_resource type="PackedScene" uid="uid://cm04mmmvwboov" path="res://scenes/entities/enemy.tscn" id="2_00pip"]
 [ext_resource type="PackedScene" uid="uid://b1yocmxgyedm0" path="res://scenes/map.tscn" id="3_rnwjd"]
 [ext_resource type="PackedScene" uid="uid://jfm88e0ih882" path="res://scenes/entities/player.tscn" id="4_0usl1"]
 [ext_resource type="PackedScene" uid="uid://dnxglqbpcfdjv" path="res://scenes/background.tscn" id="4_061k7"]
-[ext_resource type="PackedScene" uid="uid://ok187owkqej0" path="res://scenes/entities/bullet.tscn" id="5_qwghe"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_vc4el")
 enemy_scene = ExtResource("2_00pip")
-bullet_scene = ExtResource("5_qwghe")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_061k7")]
 

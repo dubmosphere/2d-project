@@ -1,7 +1,7 @@
 class_name Player
 extends Entity
 
-@export var player_number: int
+@export var player_number: int = 0
 
 @onready var animation_tree: AnimationTree = $Sprite/AnimationTree
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound

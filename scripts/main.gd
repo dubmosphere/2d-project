@@ -2,13 +2,12 @@ class_name Main
 extends Node
 
 @export var enemy_scene: PackedScene
-@export var bullet_scene: PackedScene
 
 static var godmode: bool = false
 
 func _ready() -> void:
 	var enemy: Enemy = enemy_scene.instantiate() as Enemy
-	var spawn_location: Vector2 = Vector2(-216.0, 230.0)
+	var spawn_location: Vector2 = Vector2(-216.0, -230.0)
 	
 	enemy.position = spawn_location
 	

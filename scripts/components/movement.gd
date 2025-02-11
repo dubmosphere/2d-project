@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	actor.velocity = velocity
 	
 	if actor.move_and_slide() && actor.has_method("handle_collision"):
+		# TODO: actor emit signal _on_collision_after_move_and_slide or whatever...
 		actor.handle_collision()
 	
 	last_velocity = velocity
