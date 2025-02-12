@@ -17,7 +17,7 @@ func _ready() -> void:
 		damage = weapon.damage
 	$ShotSound.play()
 	await get_tree().create_timer(LIVE_TIME).timeout
-	queue_free()
+	queue_free.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -28,7 +28,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player && Main.godmode:
 		return
 	
-	queue_free()
+	queue_free.call_deferred()
 	if body is not Entity:
 		return
 	
@@ -38,4 +38,4 @@ func _on_body_entered(body: Node2D) -> void:
 	health_system.apply_dammage(damage)
 	
 	if health_system.health <= 0:
-		target_actor.queue_free()
+		target_actor.queue_free.call_deferred()

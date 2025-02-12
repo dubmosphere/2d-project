@@ -11,11 +11,11 @@
 [ext_resource type="Script" path="res://scripts/components/force_feedback.gd" id="8_jdtps"]
 [ext_resource type="Script" path="res://scripts/components/aim_axis.gd" id="10_eq31a"]
 [ext_resource type="Script" path="res://scripts/particles/cig_smoke.gd" id="10_vhbfr"]
-[ext_resource type="Script" path="res://scripts/components/crosshair.gd" id="11_blpbi"]
+[ext_resource type="Script" path="res://scripts/components/joypad_aim.gd" id="11_blpbi"]
 [ext_resource type="Texture2D" uid="uid://vqsq8yve1vjo" path="res://media/images/guns/uzi.png" id="11_hd0ed"]
 [ext_resource type="Texture2D" uid="uid://cwwcbdg685nxf" path="res://media/images/hud/crosshair.png" id="12_shrli"]
 [ext_resource type="Script" path="res://scripts/components/gun.gd" id="13_1ado3"]
-[ext_resource type="Script" path="res://scripts/components/mouse.gd" id="13_eeqp4"]
+[ext_resource type="Script" path="res://scripts/components/mouse_aim.gd" id="13_eeqp4"]
 
 [sub_resource type="Animation" id="Animation_5yutj"]
 length = 0.001
@@ -324,7 +324,7 @@ angle_curve = SubResource("CurveTexture_f64lr")
 directional_velocity_min = -25.0
 directional_velocity_max = 25.0
 directional_velocity_curve = SubResource("CurveXYZTexture_t2gyj")
-gravity = Vector3(0, -25, 0)
+gravity = Vector3(0, -10, 0)
 scale_min = 2.0
 scale_max = 2.0
 scale_curve = SubResource("CurveXYZTexture_lf00u")
@@ -335,9 +335,9 @@ alpha_curve = SubResource("CurveTexture_knppd")
 z_index = 2
 floor_stop_on_slope = false
 floor_constant_speed = true
-floor_max_angle = 0.804597
-floor_snap_length = 13.1
-safe_margin = 1.0
+floor_max_angle = 0.872665
+floor_snap_length = 20.0
+safe_margin = 0.5
 script = ExtResource("1_ffyuu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -360,7 +360,6 @@ parameters/jump_up/blend_position = 0.0
 parameters/walk/blend_position = 0
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
-visible = false
 scale = Vector2(1.29583, 2.32085)
 polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
@@ -371,10 +370,21 @@ script = ExtResource("4_xctth")
 health = 100
 
 [node name="PlayerInput" type="Node" parent="Components" node_paths=PackedStringArray("player")]
-process_priority = -1
-process_physics_priority = -1
+process_priority = -2
+process_physics_priority = -2
 script = ExtResource("5_gaf7g")
 player = NodePath("../..")
+
+[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+process_priority = -1
+process_physics_priority = -1
+script = ExtResource("6_d6hly")
+actor = NodePath("../..")
+input = NodePath("../PlayerInput")
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
 
 [node name="AimAxis" type="Marker2D" parent="Components" node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
@@ -383,23 +393,23 @@ input = NodePath("../PlayerInput")
 [node name="BulletOffset" type="Marker2D" parent="Components/AimAxis"]
 position = Vector2(55, 0)
 
-[node name="Mouse" type="Sprite2D" parent="Components/AimAxis" node_paths=PackedStringArray("input")]
+[node name="MouseAim" type="Sprite2D" parent="Components/AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
 visibility_layer = 0
 z_index = 100
 texture_filter = 1
-position = Vector2(100, 0)
+position = Vector2(45, 0)
 texture = ExtResource("12_shrli")
 script = ExtResource("13_eeqp4")
-input = NodePath("../../PlayerInput")
+input = NodePath("../../../PlayerInput")
 
-[node name="Crosshair" type="Sprite2D" parent="Components/AimAxis" node_paths=PackedStringArray("input")]
+[node name="JoypadAim" type="Sprite2D" parent="Components/AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
 visibility_layer = 0
 z_index = 100
 texture_filter = 1
-position = Vector2(180, 0)
+position = Vector2(125, 0)
 texture = ExtResource("12_shrli")
 script = ExtResource("11_blpbi")
-input = NodePath("../../PlayerInput")
+input = NodePath("../../../PlayerInput")
 
 [node name="GunOffset" type="Marker2D" parent="Components/AimAxis"]
 position = Vector2(30, 0)
@@ -420,15 +430,6 @@ projectile_velocity = 1000.0
 bullets = 9999
 bullet_scene = ExtResource("8_hnqrm")
 
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("6_d6hly")
-actor = NodePath("../..")
-input = NodePath("../PlayerInput")
-speed = 650.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
 [node name="ForceFeedback" type="Node" parent="Components" node_paths=PackedStringArray("movement", "input")]
 script = ExtResource("8_jdtps")
 movement = NodePath("../Movement")
@@ -440,7 +441,7 @@ position = Vector2(27, -2)
 amount = 20
 amount_ratio = 0.7538
 process_material = SubResource("ParticleProcessMaterial_y0m2a")
-lifetime = 2.0
+lifetime = 4.0
 script = ExtResource("10_vhbfr")
 input = NodePath("../PlayerInput")
 
@@ -451,9 +452,9 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_horizontal_offset = 1.0
 drag_left_margin = 0.05
-drag_top_margin = 0.05
+drag_top_margin = 0.5
 drag_right_margin = 0.05
-drag_bottom_margin = 0.05
+drag_bottom_margin = 0.5
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3bpfg")

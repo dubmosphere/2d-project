@@ -1,7 +1,7 @@
 class_name Player
 extends Entity
 
-@export var player_number: int = 0
+@export var id: int = 0
 
 @onready var animation_tree: AnimationTree = $Sprite/AnimationTree
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
@@ -60,5 +60,5 @@ func handle_tile_collision(collision: KinematicCollision2D) -> void:
 	var normal: Vector2 = collision.get_normal()
 	var is_on_slope: bool = normal.y != -1
 	# todo: check angle...
-	if is_on_slope && !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.y < 0:
+	if !movement.just_jumped && is_on_slope && !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.y < 0:
 		velocity.y = 0.0
