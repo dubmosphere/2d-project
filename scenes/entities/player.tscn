@@ -414,14 +414,22 @@ health_system = NodePath("../../HealthSystem")
 input = NodePath("../../PlayerInput")
 
 [node name="PlayerInput" type="Node" parent="Components" node_paths=PackedStringArray("player")]
-process_priority = -2
-process_physics_priority = -2
+process_priority = -1
+process_physics_priority = -1
 script = ExtResource("5_gaf7g")
 player = NodePath("../..")
 
+[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "bullet_offset", "input")]
+script = ExtResource("7_suntm")
+actor = NodePath("../..")
+bullet_offset = NodePath("../AimAxis/BulletOffset")
+input = NodePath("../PlayerInput")
+damage = 20
+projectile_velocity = 1000.0
+bullets = 9999
+bullet_scene = ExtResource("8_hnqrm")
+
 [node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
-process_priority = -1
-process_physics_priority = -1
 script = ExtResource("6_d6hly")
 actor = NodePath("../..")
 input = NodePath("../PlayerInput")
@@ -467,16 +475,6 @@ texture = ExtResource("11_hd0ed")
 offset = Vector2(0, 10)
 script = ExtResource("13_1ado3")
 input = NodePath("../../../PlayerInput")
-
-[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "bullet_offset", "input")]
-script = ExtResource("7_suntm")
-actor = NodePath("../..")
-bullet_offset = NodePath("../AimAxis/BulletOffset")
-input = NodePath("../PlayerInput")
-damage = 20
-projectile_velocity = 1000.0
-bullets = 9999
-bullet_scene = ExtResource("8_hnqrm")
 
 [node name="ForceFeedback" type="Node" parent="Components" node_paths=PackedStringArray("movement", "input")]
 script = ExtResource("8_jdtps")

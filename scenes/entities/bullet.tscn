@@ -26,7 +26,7 @@ curve_y = SubResource("Curve_a23mv")
 curve_z = SubResource("Curve_r4k78")
 
 [node name="Bullet" type="Area2D"]
-input_pickable = false
+priority = 10
 script = ExtResource("1_ereei")
 
 [node name="Hitcircle" type="CollisionShape2D" parent="."]
@@ -42,4 +42,4 @@ texture = SubResource("CurveXYZTexture_0ngf8")
 stream = ExtResource("2_gloog")
 pitch_scale = 4.0
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=3]

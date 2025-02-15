@@ -33,8 +33,11 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	var target_actor: Entity = body
+	print(target_actor.position)
+	print(global_position)
 	var health_system: HealthSystem = target_actor.get_node("Components/HealthSystem")
 	
+	print(body)
 	health_system.apply_dammage(damage)
 	
 	if health_system.health <= 0:

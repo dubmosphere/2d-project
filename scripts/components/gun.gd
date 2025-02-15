@@ -9,7 +9,7 @@ func _ready() -> void:
 	initial_offset = offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if input.looking_left:
 		offset.y = -initial_offset.y
 		flip_v = true
