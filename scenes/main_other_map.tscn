@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpxjvfj6jqpym"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_4nmiu"]
+[ext_resource type="PackedScene" uid="uid://cm04mmmvwboov" path="res://scenes/entities/enemy.tscn" id="2_cnayv"]
+[ext_resource type="PackedScene" uid="uid://cgy7baksgv4me" path="res://scenes/backgrounds/parallax_background.tscn" id="3_hbjld"]
+[ext_resource type="PackedScene" uid="uid://ctp02su7ve1xf" path="res://scenes/levels/other_map.tscn" id="4_ixeot"]
+[ext_resource type="PackedScene" uid="uid://dujj3ko16sow0" path="res://scenes/vfx/rain.tscn" id="5_64r4n"]
+[ext_resource type="PackedScene" uid="uid://jfm88e0ih882" path="res://scenes/entities/player.tscn" id="9_l6tfc"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_4nmiu")
+enemy_scene = ExtResource("2_cnayv")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_hbjld")]
+physics_interpolation_mode = 2
+light_mask = 0
+visibility_layer = 2
+
+[node name="Map" parent="." instance=ExtResource("4_ixeot")]
+
+[node name="Player" parent="." instance=ExtResource("9_l6tfc")]
+position = Vector2(306, 841)
+
+[node name="Player2" parent="." instance=ExtResource("9_l6tfc")]
+position = Vector2(-1322, 584)
+id = 1
+
+[node name="Player3" parent="." instance=ExtResource("9_l6tfc")]
+position = Vector2(2873, -68)
+id = 2
+
+[node name="Player4" parent="." instance=ExtResource("9_l6tfc")]
+position = Vector2(1599, 85)
+id = 3
+
+[node name="Rain" parent="." instance=ExtResource("5_64r4n")]

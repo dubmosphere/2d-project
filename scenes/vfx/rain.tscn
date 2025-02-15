@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dujj3ko16sow0"]
+
+[ext_resource type="Shader" path="res://shaders/rain.gdshader" id="1_gc2el"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jae3o"]
+shader = ExtResource("1_gc2el")
+shader_parameter/rain_amount = 100.0
+shader_parameter/near_rain_length = 0.028
+shader_parameter/far_rain_length = 0.01
+shader_parameter/near_rain_width = 0.33
+shader_parameter/far_rain_width = 0.181
+shader_parameter/near_rain_transparency = 0.274
+shader_parameter/far_rain_transparency = 0.15
+shader_parameter/rain_color = Color(0.466667, 0.466667, 0.466667, 1)
+shader_parameter/base_rain_speed = 0.469
+shader_parameter/additional_rain_speed = 0.489
+shader_parameter/slant = 0.049
+
+[node name="Rain" type="Node2D"]
+
+[node name="ParallaxRain" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0)
+repeat_size = Vector2(1920, 0)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxRain"]
+material = SubResource("ShaderMaterial_jae3o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)

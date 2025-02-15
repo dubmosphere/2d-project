@@ -1,6 +1,6 @@
-class_name Aim
-extends Sprite2D
+extends ProgressBar
 
+@export var health_system: HealthSystem
 @export var input: PlayerInput
 
 func _ready() -> void:
@@ -9,3 +9,6 @@ func _ready() -> void:
 		visibility_layer = 0
 	else:
 		visibility_layer = 1 << player_layer
+
+func _process(_delta: float) -> void:
+	value = health_system.health_percentage

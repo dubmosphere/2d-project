@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://jfm88e0ih882"]
+[gd_scene load_steps=60 format=3 uid="uid://jfm88e0ih882"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_ffyuu"]
 [ext_resource type="Texture2D" uid="uid://cdahif5sy0l7w" path="res://media/images/spritesheets/funny-char.png" id="2_ccijv"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cwwcbdg685nxf" path="res://media/images/hud/crosshair.png" id="12_shrli"]
 [ext_resource type="Script" path="res://scripts/components/gun.gd" id="13_1ado3"]
 [ext_resource type="Script" path="res://scripts/components/mouse_aim.gd" id="13_eeqp4"]
+[ext_resource type="Script" path="res://scripts/components/health_bar.gd" id="17_ia21i"]
 
 [sub_resource type="Animation" id="Animation_5yutj"]
 length = 0.001
@@ -211,6 +212,7 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_nir55")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_j61rg")
 blend_point_1/pos = 1.0
+value_label = "0"
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fo7sk"]
@@ -331,6 +333,31 @@ scale_curve = SubResource("CurveXYZTexture_lf00u")
 color = Color(0.91664, 0.91664, 0.91664, 1)
 alpha_curve = SubResource("CurveTexture_knppd")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcnap"]
+bg_color = Color(0.19, 0.19, 0.19, 0.607843)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.19, 0.19, 0.19, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ken80"]
+bg_color = Color(0.73, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.349797, 0.00726303, 0.00402886, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 floor_stop_on_slope = false
@@ -342,6 +369,7 @@ script = ExtResource("1_ffyuu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, 10)
 texture = ExtResource("2_ccijv")
 hframes = 4
 vframes = 8
@@ -354,13 +382,14 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource("AnimationNodeStateMachine_2lavb")
 anim_player = NodePath("../AnimationPlayer")
-parameters/idle/blend_position = 1.0
+parameters/idle/blend_position = 0.025
 parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0.0
 parameters/walk/blend_position = 0
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
-scale = Vector2(1.29583, 2.32085)
+position = Vector2(0, 10)
+scale = Vector2(1.296, 2.321)
 polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
 [node name="Components" type="Node2D" parent="."]
@@ -391,9 +420,10 @@ script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
 
 [node name="BulletOffset" type="Marker2D" parent="Components/AimAxis"]
-position = Vector2(55, 0)
+position = Vector2(56, 0)
 
 [node name="MouseAim" type="Sprite2D" parent="Components/AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
+light_mask = 0
 visibility_layer = 0
 z_index = 100
 texture_filter = 1
@@ -403,6 +433,7 @@ script = ExtResource("13_eeqp4")
 input = NodePath("../../../PlayerInput")
 
 [node name="JoypadAim" type="Sprite2D" parent="Components/AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
+light_mask = 0
 visibility_layer = 0
 z_index = 100
 texture_filter = 1
@@ -414,16 +445,18 @@ input = NodePath("../../../PlayerInput")
 [node name="GunOffset" type="Marker2D" parent="Components/AimAxis"]
 position = Vector2(30, 0)
 
-[node name="Gun" type="Sprite2D" parent="Components/AimAxis/GunOffset"]
+[node name="Gun" type="Sprite2D" parent="Components/AimAxis/GunOffset" node_paths=PackedStringArray("input")]
 z_index = 20
 texture_filter = 1
 texture = ExtResource("11_hd0ed")
+offset = Vector2(0, 10)
 script = ExtResource("13_1ado3")
+input = NodePath("../../../PlayerInput")
 
-[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "offset", "input")]
+[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "bullet_offset", "input")]
 script = ExtResource("7_suntm")
 actor = NodePath("../..")
-offset = NodePath("../AimAxis/BulletOffset")
+bullet_offset = NodePath("../AimAxis/BulletOffset")
 input = NodePath("../PlayerInput")
 damage = 20
 projectile_velocity = 1000.0
@@ -437,13 +470,33 @@ input = NodePath("../PlayerInput")
 intensity = 1.0
 
 [node name="CigSmoke" type="GPUParticles2D" parent="Components" node_paths=PackedStringArray("input")]
-position = Vector2(27, -2)
+position = Vector2(27, 8)
 amount = 20
 amount_ratio = 0.7538
 process_material = SubResource("ParticleProcessMaterial_y0m2a")
 lifetime = 4.0
 script = ExtResource("10_vhbfr")
 input = NodePath("../PlayerInput")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Components"]
+
+[node name="HealthBar" type="ProgressBar" parent="Components/CanvasLayer" node_paths=PackedStringArray("health_system", "input")]
+light_mask = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lcnap")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ken80")
+value = 100.0
+show_percentage = false
+script = ExtResource("17_ia21i")
+health_system = NodePath("../../HealthSystem")
+input = NodePath("../../PlayerInput")
 
 [node name="Camera" type="Camera2D" parent="."]
 light_mask = 0

@@ -4,7 +4,7 @@ extends InputComponent
 @export var player: Player
 
 var joypad = null
-var joystick_aim = true
+var joystick_aim: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,3 +46,8 @@ func _physics_process(_delta: float) -> void:
 			joystick_aim = true
 		
 		aim_angle = Vector2.ZERO.angle_to_point(aim_direction)
+		
+		if aim_direction.x < 0:
+			looking_left = true
+		else:
+			looking_left = false

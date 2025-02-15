@@ -42,10 +42,11 @@ func handle_animations() -> void:
 
 func update_blend_positions() -> void:
 	# Set blend positions by velocity.x
-	animation_tree.set("parameters/idle/blend_position", input.aim_direction.x)
-	animation_tree.set("parameters/walk/blend_position", input.aim_direction.x)
-	animation_tree.set("parameters/jump_up/blend_position", input.aim_direction.x)
-	animation_tree.set("parameters/jump_down/blend_position", input.aim_direction.x)
+	if input.aim_direction.x != 0:
+		animation_tree.set("parameters/idle/blend_position", input.aim_direction.x)
+		animation_tree.set("parameters/walk/blend_position", input.aim_direction.x)
+		animation_tree.set("parameters/jump_up/blend_position", input.aim_direction.x)
+		animation_tree.set("parameters/jump_down/blend_position", input.aim_direction.x)
 
 func handle_collision() -> void:
 	if !get_slide_collision_count():

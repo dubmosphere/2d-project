@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7767lxwrcoeu"]
+
+[ext_resource type="Script" path="res://scripts/splitscreen.gd" id="1_giq0d"]
+[ext_resource type="PackedScene" uid="uid://cm04mmmvwboov" path="res://scenes/entities/enemy.tscn" id="2_dj0te"]
+[ext_resource type="PackedScene" uid="uid://ok187owkqej0" path="res://scenes/entities/bullet.tscn" id="3_ro3xl"]
+[ext_resource type="PackedScene" uid="uid://cgy7baksgv4me" path="res://scenes/backgrounds/parallax_background.tscn" id="4_qm47l"]
+[ext_resource type="PackedScene" uid="uid://ctp02su7ve1xf" path="res://scenes/levels/other_map.tscn" id="5_bleno"]
+[ext_resource type="PackedScene" uid="uid://jfm88e0ih882" path="res://scenes/entities/player.tscn" id="6_1yn21"]
+[ext_resource type="PackedScene" uid="uid://dujj3ko16sow0" path="res://scenes/vfx/rain.tscn" id="7_cjpl0"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_giq0d")
+enemy_scene = ExtResource("2_dj0te")
+bullet_scene = ExtResource("3_ro3xl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="SubViewportContainer1" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport1" type="SubViewport" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+sdf_scale = 0
+canvas_cull_mask = 4294967267
+size = Vector2i(959, 539)
+render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("4_qm47l")]
+physics_interpolation_mode = 2
+light_mask = 0
+visibility_layer = 2
+
+[node name="Map" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("5_bleno")]
+
+[node name="Player" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("6_1yn21")]
+position = Vector2(306, 841)
+
+[node name="Rain" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("7_cjpl0")]
+light_mask = 2
+visibility_layer = 2
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+canvas_cull_mask = 4294967269
+size = Vector2i(959, 539)
+render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("4_qm47l")]
+physics_interpolation_mode = 2
+light_mask = 0
+visibility_layer = 4
+
+[node name="Player2" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("6_1yn21")]
+position = Vector2(-1322, 584)
+id = 1
+
+[node name="Rain" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("7_cjpl0")]
+light_mask = 4
+visibility_layer = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 2
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport3" type="SubViewport" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+canvas_cull_mask = 4294967273
+size = Vector2i(959, 539)
+render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3" instance=ExtResource("4_qm47l")]
+physics_interpolation_mode = 2
+light_mask = 0
+visibility_layer = 8
+
+[node name="Player3" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3" instance=ExtResource("6_1yn21")]
+position = Vector2(2873, -68)
+id = 2
+
+[node name="Rain" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3/SubViewport3" instance=ExtResource("7_cjpl0")]
+light_mask = 8
+visibility_layer = 8
+
+[node name="SubViewportContainer4" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport4" type="SubViewport" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+canvas_cull_mask = 4294967281
+size = Vector2i(959, 539)
+render_target_update_mode = 4
+
+[node name="ParallaxBackground" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4" instance=ExtResource("4_qm47l")]
+physics_interpolation_mode = 2
+light_mask = 0
+visibility_layer = 16
+
+[node name="Player4" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4" instance=ExtResource("6_1yn21")]
+position = Vector2(1599, 85)
+id = 3
+
+[node name="Rain" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4" instance=ExtResource("7_cjpl0")]
+light_mask = 16
+visibility_layer = 16

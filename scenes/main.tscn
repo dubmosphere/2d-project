@@ -2,15 +2,18 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vc4el"]
 [ext_resource type="PackedScene" uid="uid://cm04mmmvwboov" path="res://scenes/entities/enemy.tscn" id="2_00pip"]
-[ext_resource type="PackedScene" uid="uid://b1yocmxgyedm0" path="res://scenes/map.tscn" id="3_rnwjd"]
+[ext_resource type="PackedScene" uid="uid://cgy7baksgv4me" path="res://scenes/backgrounds/parallax_background.tscn" id="3_76ttp"]
+[ext_resource type="PackedScene" uid="uid://b1yocmxgyedm0" path="res://scenes/levels/map.tscn" id="3_rnwjd"]
 [ext_resource type="PackedScene" uid="uid://jfm88e0ih882" path="res://scenes/entities/player.tscn" id="4_0usl1"]
-[ext_resource type="PackedScene" uid="uid://dnxglqbpcfdjv" path="res://scenes/background.tscn" id="4_061k7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_vc4el")
 enemy_scene = ExtResource("2_00pip")
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("4_061k7")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_76ttp")]
+physics_interpolation_mode = 2
+light_mask = 0
+visibility_layer = 2
 
 [node name="Map" parent="." instance=ExtResource("3_rnwjd")]
 

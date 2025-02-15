@@ -9,15 +9,15 @@
 lightmap_size_hint = Vector2i(17, 9)
 
 [sub_resource type="Curve" id="Curve_k7i8v"]
-_data = [Vector2(0, 0.483824), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.760946), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_a23mv"]
-_data = [Vector2(0.0359712, 0.428571), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.686953), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_r4k78"]
-_data = [Vector2(0.028777, 0.494505), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.230108), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_0ngf8"]

@@ -2,7 +2,7 @@ class_name RangedWeapon
 extends Node
 
 @export var actor: Entity
-@export var offset: Marker2D
+@export var bullet_offset: Marker2D
 @export var input: InputComponent
 @export var damage: int
 @export var projectile_velocity: float
@@ -11,11 +11,11 @@ extends Node
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	attack()
+	if input.attack:
+		attack()
 
 func attack() -> void:
-	if input.attack:
-		spawn_bullet()
+	spawn_bullet()
 
 func spawn_bullet() -> void:
 	if !bullets && !Main.godmode:
@@ -25,6 +25,6 @@ func spawn_bullet() -> void:
 		bullets = 9999
 	var bullet: Bullet = bullet_scene.instantiate()
 	bullet.actor = actor
-	bullet.position = offset.global_position
+	bullet.position = bullet_offset.global_position
 	bullet.direction = input.aim_direction
 	actor.get_parent().add_child(bullet)

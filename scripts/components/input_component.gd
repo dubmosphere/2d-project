@@ -7,3 +7,4 @@ var aim_angle: float = 0.0
 var jump: bool = false
 var attack: bool = false
 var click: bool = false
+var looking_left: bool = false
