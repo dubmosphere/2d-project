@@ -4,20 +4,23 @@
 [ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="2_gloog"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bkwq"]
+radius = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_bwr38"]
 lightmap_size_hint = Vector2i(17, 9)
+radius = 0.2
+height = 0.4
 
 [sub_resource type="Curve" id="Curve_k7i8v"]
-_data = [Vector2(0, 0.760946), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_a23mv"]
-_data = [Vector2(0, 0.686953), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.846154), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_r4k78"]
-_data = [Vector2(0, 0.230108), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_0ngf8"]
@@ -30,7 +33,7 @@ priority = 10
 script = ExtResource("1_ereei")
 
 [node name="Hitcircle" type="CollisionShape2D" parent="."]
-visible = false
+scale = Vector2(1.00219, 1.00791)
 shape = SubResource("CircleShape2D_7bkwq")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mfsc2won1uvs"]
+
+[ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="1_11eam"]
+[ext_resource type="Script" path="res://scripts/sound_manager.gd" id="1_625tt"]
+
+[node name="SoundManager" type="Node2D"]
+script = ExtResource("1_625tt")
+
+[node name="ShotSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_11eam")
+pitch_scale = 4.0
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_11eam")

@@ -419,25 +419,6 @@ process_physics_priority = -1
 script = ExtResource("5_gaf7g")
 player = NodePath("../..")
 
-[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "bullet_offset", "input")]
-script = ExtResource("7_suntm")
-actor = NodePath("../..")
-bullet_offset = NodePath("../AimAxis/BulletOffset")
-input = NodePath("../PlayerInput")
-damage = 20
-projectile_velocity = 1000.0
-bullets = 9999
-bullet_scene = ExtResource("8_hnqrm")
-
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("6_d6hly")
-actor = NodePath("../..")
-input = NodePath("../PlayerInput")
-speed = 650.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
 [node name="AimAxis" type="Marker2D" parent="Components" node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
@@ -475,6 +456,25 @@ texture = ExtResource("11_hd0ed")
 offset = Vector2(0, 10)
 script = ExtResource("13_1ado3")
 input = NodePath("../../../PlayerInput")
+
+[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "bullet_offset", "input")]
+script = ExtResource("7_suntm")
+actor = NodePath("../..")
+bullet_offset = NodePath("../AimAxis/BulletOffset")
+input = NodePath("../PlayerInput")
+damage = 20
+projectile_velocity = 1000.0
+bullets = 9999
+bullet_scene = ExtResource("8_hnqrm")
+
+[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("6_d6hly")
+actor = NodePath("../..")
+input = NodePath("../PlayerInput")
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
 
 [node name="ForceFeedback" type="Node" parent="Components" node_paths=PackedStringArray("movement", "input")]
 script = ExtResource("8_jdtps")

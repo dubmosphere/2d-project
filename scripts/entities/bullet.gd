@@ -1,9 +1,9 @@
 class_name Bullet
 extends Area2D
 
-const SPEED: float = 1000.0
+const SPEED: float = 2000.0
 const DAMAGE: float = 10.0
-const LIVE_TIME = 10.0
+const LIVE_TIME = 5.0
 
 var actor: Entity
 var direction: Vector2 = Vector2(0.0, 0.0)
