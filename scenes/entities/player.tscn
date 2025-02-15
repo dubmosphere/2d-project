@@ -387,11 +387,6 @@ parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0.0
 parameters/walk/blend_position = 0
 
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 10)
-scale = Vector2(1.296, 2.321)
-polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
-
 [node name="Components" type="Node2D" parent="."]
 
 [node name="HealthSystem" type="Node" parent="Components"]
@@ -497,6 +492,11 @@ show_percentage = false
 script = ExtResource("17_ia21i")
 health_system = NodePath("../../HealthSystem")
 input = NodePath("../../PlayerInput")
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(1.296, 2.321)
+polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
 [node name="Camera" type="Camera2D" parent="."]
 light_mask = 0
