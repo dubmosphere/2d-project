@@ -282,6 +282,31 @@ states/walk/position = Vector2(658, 124)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "idle", "jump_up", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "jump_up", "jump_down", SubResource("AnimationNodeStateMachineTransition_kget7"), "jump_down", "idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "walk", "jump_up", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "jump_down", "walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
 graph_offset = Vector2(26, 56)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcnap"]
+bg_color = Color(0.19, 0.19, 0.19, 0.607843)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.19, 0.19, 0.19, 0.858824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ken80"]
+bg_color = Color(0.73, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.349797, 0.00726303, 0.00402886, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="Curve" id="Curve_apksf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.695122, 0.934066), -0.924812, -0.924812, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -333,31 +358,6 @@ scale_curve = SubResource("CurveXYZTexture_lf00u")
 color = Color(0.91664, 0.91664, 0.91664, 1)
 alpha_curve = SubResource("CurveTexture_knppd")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcnap"]
-bg_color = Color(0.19, 0.19, 0.19, 0.607843)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.19, 0.19, 0.19, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_size = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ken80"]
-bg_color = Color(0.73, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.349797, 0.00726303, 0.00402886, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 floor_stop_on_slope = false
@@ -392,6 +392,26 @@ parameters/walk/blend_position = 0
 [node name="HealthSystem" type="Node" parent="Components"]
 script = ExtResource("4_xctth")
 health = 100
+
+[node name="HealthBar" type="CanvasLayer" parent="Components"]
+
+[node name="ProgressBar" type="ProgressBar" parent="Components/HealthBar" node_paths=PackedStringArray("health_system", "input")]
+light_mask = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lcnap")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ken80")
+value = 100.0
+show_percentage = false
+script = ExtResource("17_ia21i")
+health_system = NodePath("../../HealthSystem")
+input = NodePath("../../PlayerInput")
 
 [node name="PlayerInput" type="Node" parent="Components" node_paths=PackedStringArray("player")]
 process_priority = -2
@@ -472,26 +492,6 @@ process_material = SubResource("ParticleProcessMaterial_y0m2a")
 lifetime = 4.0
 script = ExtResource("10_vhbfr")
 input = NodePath("../PlayerInput")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Components"]
-
-[node name="HealthBar" type="ProgressBar" parent="Components/CanvasLayer" node_paths=PackedStringArray("health_system", "input")]
-light_mask = 0
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -208.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 48.0
-grow_horizontal = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_lcnap")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ken80")
-value = 100.0
-show_percentage = false
-script = ExtResource("17_ia21i")
-health_system = NodePath("../../HealthSystem")
-input = NodePath("../../PlayerInput")
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 10)

@@ -26,6 +26,7 @@ curve_y = SubResource("Curve_a23mv")
 curve_z = SubResource("Curve_r4k78")
 
 [node name="Bullet" type="Area2D"]
+input_pickable = false
 script = ExtResource("1_ereei")
 
 [node name="Hitcircle" type="CollisionShape2D" parent="."]
