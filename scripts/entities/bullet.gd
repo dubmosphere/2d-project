@@ -13,7 +13,7 @@ var damage: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if actor:
-		var weapon: RangedWeapon = actor.get_node("Components/RangedWeapon")
+		var weapon: RangedWeapon = actor.get_node("RangedWeapon")
 		damage = weapon.damage
 	$ShotSound.play()
 	await get_tree().create_timer(LIVE_TIME).timeout
@@ -35,7 +35,7 @@ func _on_body_entered(body: Node2D) -> void:
 	var target_actor: Entity = body
 	print(target_actor.position)
 	print(global_position)
-	var health_system: HealthSystem = target_actor.get_node("Components/HealthSystem")
+	var health_system: HealthSystem = target_actor.get_node("HealthSystem")
 	
 	print(body)
 	health_system.apply_dammage(damage)

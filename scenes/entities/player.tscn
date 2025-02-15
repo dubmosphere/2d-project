@@ -387,15 +387,18 @@ parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0.0
 parameters/walk/blend_position = 0
 
-[node name="Components" type="Node2D" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(1.296, 2.321)
+polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
-[node name="HealthSystem" type="Node" parent="Components"]
+[node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("4_xctth")
 health = 100
 
-[node name="HealthBar" type="CanvasLayer" parent="Components"]
+[node name="HealthBar" type="CanvasLayer" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="Components/HealthBar" node_paths=PackedStringArray("health_system", "input")]
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar" node_paths=PackedStringArray("health_system", "input")]
 light_mask = 0
 anchors_preset = 1
 anchor_left = 1.0
@@ -413,20 +416,20 @@ script = ExtResource("17_ia21i")
 health_system = NodePath("../../HealthSystem")
 input = NodePath("../../PlayerInput")
 
-[node name="PlayerInput" type="Node" parent="Components" node_paths=PackedStringArray("player")]
+[node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("player")]
 process_priority = -1
 process_physics_priority = -1
 script = ExtResource("5_gaf7g")
-player = NodePath("../..")
+player = NodePath("..")
 
-[node name="AimAxis" type="Marker2D" parent="Components" node_paths=PackedStringArray("input")]
+[node name="AimAxis" type="Marker2D" parent="." node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
 
-[node name="BulletOffset" type="Marker2D" parent="Components/AimAxis"]
+[node name="BulletOffset" type="Marker2D" parent="AimAxis"]
 position = Vector2(56, 0)
 
-[node name="MouseAim" type="Sprite2D" parent="Components/AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
+[node name="MouseAim" type="Sprite2D" parent="AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
 light_mask = 0
 visibility_layer = 0
 z_index = 100
@@ -436,7 +439,7 @@ texture = ExtResource("12_shrli")
 script = ExtResource("13_eeqp4")
 input = NodePath("../../../PlayerInput")
 
-[node name="JoypadAim" type="Sprite2D" parent="Components/AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
+[node name="JoypadAim" type="Sprite2D" parent="AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
 light_mask = 0
 visibility_layer = 0
 z_index = 100
@@ -446,10 +449,10 @@ texture = ExtResource("12_shrli")
 script = ExtResource("11_blpbi")
 input = NodePath("../../../PlayerInput")
 
-[node name="GunOffset" type="Marker2D" parent="Components/AimAxis"]
+[node name="GunOffset" type="Marker2D" parent="AimAxis"]
 position = Vector2(30, 0)
 
-[node name="Gun" type="Sprite2D" parent="Components/AimAxis/GunOffset" node_paths=PackedStringArray("input")]
+[node name="Gun" type="Sprite2D" parent="AimAxis/GunOffset" node_paths=PackedStringArray("input")]
 z_index = 20
 texture_filter = 1
 texture = ExtResource("11_hd0ed")
@@ -457,9 +460,9 @@ offset = Vector2(0, 10)
 script = ExtResource("13_1ado3")
 input = NodePath("../../../PlayerInput")
 
-[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "bullet_offset", "input")]
+[node name="RangedWeapon" type="Node" parent="." node_paths=PackedStringArray("actor", "bullet_offset", "input")]
 script = ExtResource("7_suntm")
-actor = NodePath("../..")
+actor = NodePath("..")
 bullet_offset = NodePath("../AimAxis/BulletOffset")
 input = NodePath("../PlayerInput")
 damage = 20
@@ -467,22 +470,22 @@ projectile_velocity = 1000.0
 bullets = 9999
 bullet_scene = ExtResource("8_hnqrm")
 
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
 script = ExtResource("6_d6hly")
-actor = NodePath("../..")
+actor = NodePath("..")
 input = NodePath("../PlayerInput")
 speed = 650.0
 max_jump_count = 2
 jump_velocity = -550.0
 max_down_speed = 1500.0
 
-[node name="ForceFeedback" type="Node" parent="Components" node_paths=PackedStringArray("movement", "input")]
+[node name="ForceFeedback" type="Node" parent="." node_paths=PackedStringArray("movement", "input")]
 script = ExtResource("8_jdtps")
 movement = NodePath("../Movement")
 input = NodePath("../PlayerInput")
 intensity = 1.0
 
-[node name="CigSmoke" type="GPUParticles2D" parent="Components" node_paths=PackedStringArray("input")]
+[node name="CigSmoke" type="GPUParticles2D" parent="." node_paths=PackedStringArray("input")]
 position = Vector2(27, 8)
 amount = 20
 amount_ratio = 0.7538
@@ -490,11 +493,6 @@ process_material = SubResource("ParticleProcessMaterial_y0m2a")
 lifetime = 4.0
 script = ExtResource("10_vhbfr")
 input = NodePath("../PlayerInput")
-
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 10)
-scale = Vector2(1.296, 2.321)
-polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
 [node name="Camera" type="Camera2D" parent="."]
 light_mask = 0

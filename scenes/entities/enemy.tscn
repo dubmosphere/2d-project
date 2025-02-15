@@ -336,11 +336,6 @@ z_index = 1
 scale = Vector2(0.183, 0.183)
 script = ExtResource("1_tbd5j")
 
-[node name="Hitbox" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 27.3973)
-scale = Vector2(6.8719, 17.0124)
-polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
-
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_ma7m8")
@@ -362,29 +357,32 @@ parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0
 parameters/walk/blend_position = 0
 
-[node name="Components" type="Node" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 27.3973)
+scale = Vector2(6.8719, 17.0124)
+polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
 
-[node name="HealthSystem" type="Node" parent="Components"]
+[node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("2_28g2q")
 health = 100
 
-[node name="Input" type="Node" parent="Components"]
+[node name="Input" type="Node" parent="."]
 script = ExtResource("4_nmmx2")
 
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("4_n3j0b")
-actor = NodePath("../..")
-input = NodePath("../Input")
-speed = 650.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
-[node name="RangedWeapon" type="Node" parent="Components" node_paths=PackedStringArray("actor", "input")]
+[node name="RangedWeapon" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
 script = ExtResource("5_235nx")
-actor = NodePath("../..")
+actor = NodePath("..")
 input = NodePath("../Input")
 damage = 10
 projectile_velocity = 800.0
 bullets = 50
 bullet_scene = ExtResource("6_b8bxm")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("4_n3j0b")
+actor = NodePath("..")
+input = NodePath("../Input")
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
