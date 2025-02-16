@@ -22,7 +22,7 @@ func _ready() -> void:
 	sub_viewport1.add_child(enemy)
 
 func _process(_delta: float) -> void:
-	#print("FPS: %s (MSPF: %s)" % [1 / _delta, _delta])
+	#print("FPS: %s (MSPF: %s)" % [Engine.get_frames_per_second(), _delta])
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("pause"):
