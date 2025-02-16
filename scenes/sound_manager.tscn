@@ -3,7 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="1_11eam"]
 [ext_resource type="Script" path="res://scripts/sound_manager.gd" id="1_625tt"]
 
-[node name="SoundManager" type="Node2D"]
+[node name="SoundManager" type="Node"]
 script = ExtResource("1_625tt")
 
 [node name="ShotSound" type="AudioStreamPlayer2D" parent="."]

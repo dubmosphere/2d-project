@@ -10,7 +10,7 @@ extends Node
 @export var bullet_scene: PackedScene
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if input.attack:
 		attack()
 
@@ -27,4 +27,5 @@ func spawn_bullet() -> void:
 	bullet.actor = actor
 	bullet.position = bullet_offset.global_position
 	bullet.direction = input.aim_direction
+	bullet.rotation = input.aim_angle
 	actor.get_parent().add_child(bullet)

@@ -14,7 +14,7 @@ func _ready() -> void:
 			joypad = j
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.id == 0 || joypad != null:
 		click = Input.is_action_just_pressed("click")
 		jump = Input.is_action_just_pressed("jump_%s" % player.id)

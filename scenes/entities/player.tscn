@@ -1,8 +1,7 @@
-[gd_scene load_steps=60 format=3 uid="uid://jfm88e0ih882"]
+[gd_scene load_steps=59 format=3 uid="uid://jfm88e0ih882"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_ffyuu"]
 [ext_resource type="Texture2D" uid="uid://cdahif5sy0l7w" path="res://media/images/spritesheets/funny-char.png" id="2_ccijv"]
-[ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="3_3bpfg"]
 [ext_resource type="Script" path="res://scripts/components/health_system.gd" id="4_xctth"]
 [ext_resource type="Script" path="res://scripts/components/player_input.gd" id="5_gaf7g"]
 [ext_resource type="Script" path="res://scripts/components/movement.gd" id="6_d6hly"]
@@ -289,11 +288,6 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.19, 0.19, 0.19, 0.858824)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ken80"]
 bg_color = Color(0.73, 0, 0, 1)
@@ -302,10 +296,6 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.349797, 0.00726303, 0.00402886, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="Curve" id="Curve_apksf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.695122, 0.934066), -0.924812, -0.924812, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -422,6 +412,25 @@ process_physics_priority = -1
 script = ExtResource("5_gaf7g")
 player = NodePath("..")
 
+[node name="RangedWeapon" type="Node" parent="." node_paths=PackedStringArray("actor", "bullet_offset", "input")]
+script = ExtResource("7_suntm")
+actor = NodePath("..")
+bullet_offset = NodePath("../AimAxis/BulletOffset")
+input = NodePath("../PlayerInput")
+damage = 20
+projectile_velocity = 1000.0
+bullets = 9999
+bullet_scene = ExtResource("8_hnqrm")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("6_d6hly")
+actor = NodePath("..")
+input = NodePath("../PlayerInput")
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
+
 [node name="AimAxis" type="Marker2D" parent="." node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
@@ -460,25 +469,6 @@ offset = Vector2(0, 10)
 script = ExtResource("13_1ado3")
 input = NodePath("../../../PlayerInput")
 
-[node name="RangedWeapon" type="Node" parent="." node_paths=PackedStringArray("actor", "bullet_offset", "input")]
-script = ExtResource("7_suntm")
-actor = NodePath("..")
-bullet_offset = NodePath("../AimAxis/BulletOffset")
-input = NodePath("../PlayerInput")
-damage = 20
-projectile_velocity = 1000.0
-bullets = 9999
-bullet_scene = ExtResource("8_hnqrm")
-
-[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("6_d6hly")
-actor = NodePath("..")
-input = NodePath("../PlayerInput")
-speed = 650.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
 [node name="ForceFeedback" type="Node" parent="." node_paths=PackedStringArray("movement", "input")]
 script = ExtResource("8_jdtps")
 movement = NodePath("../Movement")
@@ -504,6 +494,3 @@ drag_left_margin = 0.05
 drag_top_margin = 0.5
 drag_right_margin = 0.05
 drag_bottom_margin = 0.5
-
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_3bpfg")

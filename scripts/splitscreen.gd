@@ -22,12 +22,13 @@ func _ready() -> void:
 	sub_viewport1.add_child(enemy)
 
 func _process(_delta: float) -> void:
+	#print("FPS: %s (MSPF: %s)" % [1 / _delta, _delta])
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("pause"):
 		get_tree().paused = false if get_tree().paused else true
 	elif Input.is_action_just_pressed("toggle_godmode"):
 		toggle_godmode()
-
+	
 func toggle_godmode() -> void:
 	Main.godmode = !Main.godmode;

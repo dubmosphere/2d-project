@@ -15,12 +15,12 @@ func _ready() -> void:
 	if actor:
 		var weapon: RangedWeapon = actor.get_node("RangedWeapon")
 		damage = weapon.damage
-	$ShotSound.play()
+	SoundManager.play_shot_sound()
 	await get_tree().create_timer(LIVE_TIME).timeout
 	queue_free.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var velocity: Vector2 = direction * SPEED
 	position += velocity * delta
 
@@ -33,11 +33,11 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	var target_actor: Entity = body
-	print(target_actor.position)
-	print(global_position)
+	#print(target_actor.position)
+	#print(global_position)
 	var health_system: HealthSystem = target_actor.get_node("HealthSystem")
 	
-	print(body)
+	#print(body)
 	health_system.apply_dammage(damage)
 	
 	if health_system.health <= 0:

@@ -1,11 +1,10 @@
 extends Node
 
+@onready var jump_sound: AudioStreamPlayer2D = $JumpSound
+@onready var shot_sound: AudioStreamPlayer2D = $ShotSound
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func play_jump_sound() -> void:
+	jump_sound.play()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func play_shot_sound() -> void:
+	shot_sound.play()

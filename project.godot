@@ -17,13 +17,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SoundManager="*res://scripts/sound_manager.gd"
+SoundManager="*res://scenes/sound_manager.tscn"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 window/defaults/default_clear_color=Color(0.425278, 0.651347, 0.999997, 1)
 
 [dotnet]
@@ -283,6 +284,10 @@ aim_up_3={
 2d_render/layer_3="Player 2 HUD"
 2d_render/layer_4="Player 3 HUD"
 2d_render/layer_5="Player 4 HUD"
+
+[physics]
+
+common/physics_ticks_per_second=120
 
 [rendering]
 

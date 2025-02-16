@@ -1,15 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ok187owkqej0"]
+[gd_scene load_steps=8 format=3 uid="uid://ok187owkqej0"]
 
 [ext_resource type="Script" path="res://scripts/entities/bullet.gd" id="1_ereei"]
-[ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="2_gloog"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7bkwq"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwbit"]
+size = Vector2(8, 8)
 
-[sub_resource type="SphereMesh" id="SphereMesh_bwr38"]
-lightmap_size_hint = Vector2i(17, 9)
-radius = 0.2
-height = 0.4
+[sub_resource type="BoxMesh" id="BoxMesh_ojxwk"]
+size = Vector3(0.4, 0.4, 0)
 
 [sub_resource type="Curve" id="Curve_k7i8v"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -32,17 +29,12 @@ curve_z = SubResource("Curve_r4k78")
 priority = 10
 script = ExtResource("1_ereei")
 
-[node name="Hitcircle" type="CollisionShape2D" parent="."]
-scale = Vector2(1.00219, 1.00791)
-shape = SubResource("CircleShape2D_7bkwq")
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bwbit")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-scale = Vector2(19.92, 19.92)
-mesh = SubResource("SphereMesh_bwr38")
+scale = Vector2(19.6334, 19.2873)
+mesh = SubResource("BoxMesh_ojxwk")
 texture = SubResource("CurveXYZTexture_0ngf8")
-
-[node name="ShotSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_gloog")
-pitch_scale = 4.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered" flags=3]
