@@ -372,7 +372,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource("AnimationNodeStateMachine_2lavb")
 anim_player = NodePath("../AnimationPlayer")
-parameters/idle/blend_position = 0.025
+parameters/idle/blend_position = 0.0
 parameters/jump_down/blend_position = 0
 parameters/jump_up/blend_position = 0.0
 parameters/walk/blend_position = 0
@@ -491,6 +491,6 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_horizontal_offset = 1.0
 drag_left_margin = 0.05
-drag_top_margin = 0.5
+drag_top_margin = 0.25
 drag_right_margin = 0.05
-drag_bottom_margin = 0.5
+drag_bottom_margin = 0.25
