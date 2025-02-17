@@ -22,7 +22,7 @@ var just_jumped: bool = false
 var impact_velocity: Vector2 = Vector2(0.0, 0.0)
 
 func _process(_delta: float) -> void:
-	if  input.jump && !do_jump:
+	if input.jump && !do_jump:
 		do_jump = input.jump
 	
 	direction = input.direction
