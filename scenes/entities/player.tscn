@@ -431,18 +431,6 @@ projectile_velocity = 1000.0
 bullets = 9999
 bullet_scene = ExtResource("8_hnqrm")
 
-<<<<<<< HEAD
-[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("6_d6hly")
-actor = NodePath("..")
-input = NodePath("../PlayerInput")
-speed = 500.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
-=======
->>>>>>> 2acab925718339c9f4632d4e156c80eb29513801
 [node name="AimAxis" type="Marker2D" parent="." node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
