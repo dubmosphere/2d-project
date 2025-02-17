@@ -20,7 +20,7 @@ func _ready() -> void:
 	queue_free.call_deferred()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var velocity: Vector2 = direction * SPEED
 	position += velocity * delta
 

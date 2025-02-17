@@ -378,6 +378,8 @@ parameters/jump_up/blend_position = 0.0
 parameters/walk/blend_position = 0
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
+process_priority = -1
+process_physics_priority = -1
 position = Vector2(0, 10)
 scale = Vector2(1.296, 2.321)
 polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7, 9, -10, 0, -11, -9, -10)
@@ -436,30 +438,30 @@ script = ExtResource("10_eq31a")
 input = NodePath("../PlayerInput")
 
 [node name="BulletOffset" type="Marker2D" parent="AimAxis"]
-position = Vector2(56, 0)
+position = Vector2(50, 0)
 
-[node name="MouseAim" type="Sprite2D" parent="AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
+[node name="GunOffset" type="Marker2D" parent="AimAxis"]
+position = Vector2(30, 0)
+
+[node name="MouseAim" type="Sprite2D" parent="AimAxis/GunOffset" node_paths=PackedStringArray("input")]
 light_mask = 0
 visibility_layer = 0
 z_index = 100
 texture_filter = 1
-position = Vector2(45, 0)
+position = Vector2(71, 0)
 texture = ExtResource("12_shrli")
 script = ExtResource("13_eeqp4")
 input = NodePath("../../../PlayerInput")
 
-[node name="JoypadAim" type="Sprite2D" parent="AimAxis/BulletOffset" node_paths=PackedStringArray("input")]
+[node name="JoypadAim" type="Sprite2D" parent="AimAxis/GunOffset" node_paths=PackedStringArray("input")]
 light_mask = 0
 visibility_layer = 0
 z_index = 100
 texture_filter = 1
-position = Vector2(125, 0)
+position = Vector2(151, 0)
 texture = ExtResource("12_shrli")
 script = ExtResource("11_blpbi")
 input = NodePath("../../../PlayerInput")
-
-[node name="GunOffset" type="Marker2D" parent="AimAxis"]
-position = Vector2(30, 0)
 
 [node name="Gun" type="Sprite2D" parent="AimAxis/GunOffset" node_paths=PackedStringArray("input")]
 z_index = 20

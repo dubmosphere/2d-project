@@ -8,6 +8,8 @@ extends Node
 @export var jump_velocity: float
 @export var max_down_speed: float
 
+var direction: float = 0.0
+var do_jump: bool = false
 var jump_count: int = 0
 var velocity: Vector2 = Vector2(0.0, 0.0)
 var last_velocity: Vector2 = Vector2(0.0, 0.0)
@@ -15,8 +17,14 @@ var just_landed: bool = false
 var just_jumped: bool = false
 var impact_velocity: Vector2 = Vector2(0.0, 0.0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if  input.jump && !do_jump:
+		do_jump = input.jump
+	if input.direction != 0.0 && direction == 0.0:
+		direction = input.direction
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
 	velocity = actor.velocity
 	
 	apply_gravity(delta)
@@ -43,13 +51,13 @@ func apply_gravity(delta: float, force: bool = false) -> void:
 func handle_jump() -> void:
 	just_jumped = false
 	# Handle jump.
-	if input.jump:
+	if do_jump:
 		jump()
 	elif jump_count > 0 && actor.is_on_floor():
 		jump_count = 0
 
 func jump() -> void:
-	var do_jump: bool = false
+	do_jump = false
 	
 	if Main.godmode \
 	  || actor.is_on_floor()\
@@ -61,6 +69,7 @@ func jump() -> void:
 	velocity.y = jump_velocity
 	jump_count += 1
 	just_jumped = true
+	do_jump = false
 
 func handle_landing() -> void:
 	if velocity.y == 0 && last_velocity.y > 0 && actor.is_on_floor():
