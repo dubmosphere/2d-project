@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckeyjp4ryktp1"]
+
+[ext_resource type="PackedScene" uid="uid://cgy7baksgv4me" path="res://scenes/backgrounds/parallax_background.tscn" id="1_mbynd"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_w0cue"]
+[ext_resource type="PackedScene" uid="uid://cpxjvfj6jqpym" path="res://scenes/main_other_map.tscn" id="2_3kaoo"]
+[ext_resource type="PackedScene" uid="uid://c7767lxwrcoeu" path="res://scenes/splitscreen_other_map.tscn" id="2_tsjw7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w0cue")
+play_scene = ExtResource("2_3kaoo")
+play_splitscreen_scene = ExtResource("2_tsjw7")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_mbynd")]
+
+[node name="Layer1" parent="ParallaxBackground" index="1"]
+repeat_size = Vector2(0, 0)
+
+[node name="Layer2" parent="ParallaxBackground" index="2"]
+repeat_size = Vector2(0, 0)
+
+[node name="Layer3" parent="ParallaxBackground" index="3"]
+repeat_size = Vector2(0, 0)
+
+[node name="Layer4" parent="ParallaxBackground" index="4"]
+repeat_size = Vector2(0, 0)
+
+[node name="Layer5" parent="ParallaxBackground" index="5"]
+repeat_size = Vector2(0, 0)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -35.0
+offset_right = 100.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Singleplayer" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Singleplayer"
+
+[node name="Splitscreen" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Splitscreen"
+
+[node name="Quit" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBox/Singleplayer" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBox/Splitscreen" to="." method="_on_play_splitscreen_pressed"]
+[connection signal="pressed" from="VBox/Quit" to="." method="_on_quit_pressed"]
+
+[editable path="ParallaxBackground"]

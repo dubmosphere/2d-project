@@ -17,11 +17,11 @@ var just_landed: bool = false
 var just_jumped: bool = false
 var impact_velocity: Vector2 = Vector2(0.0, 0.0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if  input.jump && !do_jump:
 		do_jump = input.jump
-	if input.direction != 0.0 && direction == 0.0:
-		direction = input.direction
+	
+	direction = input.direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -81,8 +81,6 @@ func handle_landing() -> void:
 		just_landed = false
 
 func handle_movement() -> void:
-	# Get the input direction and handle the movement/deceleration.
-	var direction: float = input.direction
 	if direction:
 		velocity.x = direction * speed
 	else:
