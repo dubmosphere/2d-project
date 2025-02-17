@@ -47,18 +47,18 @@ func update_blend_positions() -> void:
 		animation_tree.set("parameters/jump_up/blend_position", input.aim_direction.x)
 		animation_tree.set("parameters/jump_down/blend_position", input.aim_direction.x)
 
-#func handle_collision() -> void:
-	#if !get_slide_collision_count():
-		#return
-	#
-	#for index in get_slide_collision_count():
-		#var collision: KinematicCollision2D = get_slide_collision(index)
-		#if collision.get_collider() is TileMapLayer:
-			#handle_tile_collision(collision)
-#
-#func handle_tile_collision(collision: KinematicCollision2D) -> void:
-	#var normal: Vector2 = collision.get_normal()
-	#var is_on_slope: bool = normal.y != -1
-	## todo: check angle...
-	#if !movement.just_jumped && is_on_slope && !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.x == 0:
-		#velocity.y = 0.0
+func handle_collision() -> void:
+	if !get_slide_collision_count():
+		return
+	
+	for index in get_slide_collision_count():
+		var collision: KinematicCollision2D = get_slide_collision(index)
+		if collision.get_collider() is TileMapLayer:
+			handle_tile_collision(collision)
+
+func handle_tile_collision(collision: KinematicCollision2D) -> void:
+	var normal: Vector2 = collision.get_normal()
+	var is_on_slope: bool = normal.y != -1
+	# todo: check angle...
+	if !movement.just_jumped && is_on_slope && !is_on_wall() && !is_on_ceiling() && !input.jump && velocity.y < 0 && ((velocity.x > 0 && velocity.x > velocity.y) || (velocity.y > 0 && velocity.x < velocity.y)):
+		velocity.y -= movement.jump_velocity
