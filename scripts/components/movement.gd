@@ -3,6 +3,10 @@ extends Node
 
 @export var actor: CharacterBody2D
 @export var input: InputComponent
+@export var acceleration: float
+@export var deceleration: float
+@export var jump_acceleration: float
+@export var jump_deceleration: float
 @export var speed: float
 @export var max_jump_count: int
 @export var jump_velocity: float
@@ -81,7 +85,14 @@ func handle_landing() -> void:
 		just_landed = false
 
 func handle_movement() -> void:
+	var effective_acceleration: float = acceleration
+	var effective_deceleration: float = deceleration
+	
+	if !actor.is_on_floor():
+		effective_acceleration = jump_acceleration
+		effective_deceleration = jump_deceleration
+	
 	if direction:
-		velocity.x = direction * speed
+		velocity.x = move_toward(velocity.x, direction * speed, effective_acceleration)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, effective_deceleration)

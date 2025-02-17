@@ -19,18 +19,23 @@ play_splitscreen_scene = ExtResource("2_tsjw7")
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_mbynd")]
 
 [node name="Layer1" parent="ParallaxBackground" index="1"]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 0)
 
 [node name="Layer2" parent="ParallaxBackground" index="2"]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 0)
 
 [node name="Layer3" parent="ParallaxBackground" index="3"]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 0)
 
 [node name="Layer4" parent="ParallaxBackground" index="4"]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 0)
 
 [node name="Layer5" parent="ParallaxBackground" index="5"]
+scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 0)
 
 [node name="VBox" type="VBoxContainer" parent="."]
