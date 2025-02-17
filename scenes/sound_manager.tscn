@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://mfsc2won1uvs"]
+[gd_scene load_steps=4 format=3 uid="uid://mfsc2won1uvs"]
 
 [ext_resource type="AudioStream" uid="uid://cgnl8tci2pand" path="res://media/sound/mario_jump.wav" id="1_11eam"]
 [ext_resource type="Script" path="res://scripts/sound_manager.gd" id="1_625tt"]
+[ext_resource type="AudioStream" uid="uid://b2ivs7tbu8x3k" path="res://media/sound/SampleMania 2024-01-21 0457.mp3" id="3_3fx7s"]
 
 [node name="SoundManager" type="Node"]
 script = ExtResource("1_625tt")
@@ -9,6 +10,12 @@ script = ExtResource("1_625tt")
 [node name="ShotSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_11eam")
 pitch_scale = 4.0
+bus = &"SFX"
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_11eam")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3fx7s")
+bus = &"Music"

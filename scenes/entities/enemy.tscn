@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://nqabn0uxlbb8" path="res://media/images/spritesheets/spritesheet_gb.png" id="1_ma7m8"]
 [ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_tbd5j"]
-[ext_resource type="Script" path="res://scripts/components/health_system.gd" id="2_28g2q"]
-[ext_resource type="Script" path="res://scripts/components/movement.gd" id="4_n3j0b"]
-[ext_resource type="Script" path="res://scripts/components/input_component.gd" id="4_nmmx2"]
-[ext_resource type="Script" path="res://scripts/components/ranged_weapon.gd" id="5_235nx"]
+[ext_resource type="Script" path="res://scripts/components/health/health_system.gd" id="2_28g2q"]
+[ext_resource type="Script" path="res://scripts/components/physics/movement.gd" id="4_n3j0b"]
+[ext_resource type="Script" path="res://scripts/components/input/input_component.gd" id="4_nmmx2"]
+[ext_resource type="Script" path="res://scripts/components/weapons/ranged_weapon.gd" id="5_235nx"]
 [ext_resource type="PackedScene" uid="uid://ok187owkqej0" path="res://scenes/entities/bullet.tscn" id="6_b8bxm"]
 
 [sub_resource type="Animation" id="Animation_k1mqw"]

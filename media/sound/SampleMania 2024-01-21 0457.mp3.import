@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2ivs7tbu8x3k"
+path="res://.godot/imported/SampleMania 2024-01-21 0457.mp3-27a9f603a9b475719b3f91e4b31447ab.mp3str"
+
+[deps]
+
+source_file="res://media/sound/SampleMania 2024-01-21 0457.mp3"
+dest_files=["res://.godot/imported/SampleMania 2024-01-21 0457.mp3-27a9f603a9b475719b3f91e4b31447ab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

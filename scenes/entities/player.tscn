@@ -2,20 +2,20 @@
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_ffyuu"]
 [ext_resource type="Texture2D" uid="uid://cdahif5sy0l7w" path="res://media/images/spritesheets/funny-char.png" id="2_ccijv"]
-[ext_resource type="Script" path="res://scripts/components/health_system.gd" id="4_xctth"]
-[ext_resource type="Script" path="res://scripts/components/player_input.gd" id="5_gaf7g"]
-[ext_resource type="Script" path="res://scripts/components/movement.gd" id="6_d6hly"]
-[ext_resource type="Script" path="res://scripts/components/ranged_weapon.gd" id="7_suntm"]
+[ext_resource type="Script" path="res://scripts/components/health/health_system.gd" id="4_xctth"]
+[ext_resource type="Script" path="res://scripts/components/input/player_input.gd" id="5_gaf7g"]
+[ext_resource type="Script" path="res://scripts/components/physics/movement.gd" id="6_d6hly"]
+[ext_resource type="Script" path="res://scripts/components/weapons/ranged_weapon.gd" id="7_suntm"]
 [ext_resource type="PackedScene" uid="uid://ok187owkqej0" path="res://scenes/entities/bullet.tscn" id="8_hnqrm"]
-[ext_resource type="Script" path="res://scripts/components/force_feedback.gd" id="8_jdtps"]
-[ext_resource type="Script" path="res://scripts/components/aim_axis.gd" id="10_eq31a"]
+[ext_resource type="Script" path="res://scripts/components/input/force_feedback.gd" id="8_jdtps"]
+[ext_resource type="Script" path="res://scripts/components/aim/aim_axis.gd" id="10_eq31a"]
 [ext_resource type="Script" path="res://scripts/particles/cig_smoke.gd" id="10_vhbfr"]
-[ext_resource type="Script" path="res://scripts/components/joypad_aim.gd" id="11_blpbi"]
+[ext_resource type="Script" path="res://scripts/components/aim/joypad_aim.gd" id="11_blpbi"]
 [ext_resource type="Texture2D" uid="uid://vqsq8yve1vjo" path="res://media/images/guns/uzi.png" id="11_hd0ed"]
 [ext_resource type="Texture2D" uid="uid://cwwcbdg685nxf" path="res://media/images/hud/crosshair.png" id="12_shrli"]
-[ext_resource type="Script" path="res://scripts/components/gun.gd" id="13_1ado3"]
-[ext_resource type="Script" path="res://scripts/components/mouse_aim.gd" id="13_eeqp4"]
-[ext_resource type="Script" path="res://scripts/components/health_bar.gd" id="17_ia21i"]
+[ext_resource type="Script" path="res://scripts/components/aim/gun.gd" id="13_1ado3"]
+[ext_resource type="Script" path="res://scripts/components/aim/mouse_aim.gd" id="13_eeqp4"]
+[ext_resource type="Script" path="res://scripts/components/health/health_bar.gd" id="17_ia21i"]
 
 [sub_resource type="Animation" id="Animation_5yutj"]
 length = 0.001
@@ -419,9 +419,9 @@ script = ExtResource("6_d6hly")
 actor = NodePath("..")
 input = NodePath("../PlayerInput")
 acceleration = 50.0
-deceleration = 40.0
+deceleration = 20.0
 jump_acceleration = 30.0
-jump_deceleration = 7.0
+jump_deceleration = 2.0
 speed = 650.0
 max_jump_count = 2
 jump_velocity = -550.0

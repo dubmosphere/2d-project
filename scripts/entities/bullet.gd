@@ -15,6 +15,7 @@ func _ready() -> void:
 	if actor:
 		var weapon: RangedWeapon = actor.get_node("RangedWeapon")
 		damage = weapon.damage
+	SoundManager.shot_sound.global_position = actor.global_position
 	SoundManager.play_shot_sound()
 	await get_tree().create_timer(LIVE_TIME).timeout
 	queue_free.call_deferred()

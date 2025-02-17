@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://ctp02su7ve1xf"]
+[gd_scene load_steps=5 format=4 uid="uid://ctp02su7ve1xf"]
 
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_oc6cv"]
 [ext_resource type="Texture2D" uid="uid://bg8x2fk07vwfs" path="res://media/images/tilesets/Pixel Art Tiles and Backgrounds - Woods/Tiles/Tilesheet - WOODS.png" id="1_shiw7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oa12d"]
@@ -690,6 +691,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_oa12d")
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_oc6cv")
 
 [node name="Map" type="TileMapLayer" parent="."]
 texture_filter = 3

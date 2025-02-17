@@ -23,6 +23,7 @@ func initialize_animations() -> void:
 func _process(_delta: float) -> void:
 	handle_animations()
 	if movement.just_jumped:
+		SoundManager.jump_sound.global_position = global_position
 		SoundManager.play_jump_sound()
 
 func handle_animations() -> void:

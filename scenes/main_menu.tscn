@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckeyjp4ryktp1"]
+[gd_scene load_steps=6 format=3 uid="uid://ckeyjp4ryktp1"]
 
 [ext_resource type="PackedScene" uid="uid://cgy7baksgv4me" path="res://scenes/backgrounds/parallax_background.tscn" id="1_mbynd"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_w0cue"]
 [ext_resource type="PackedScene" uid="uid://cpxjvfj6jqpym" path="res://scenes/main_other_map.tscn" id="2_3kaoo"]
 [ext_resource type="PackedScene" uid="uid://c7767lxwrcoeu" path="res://scenes/splitscreen_other_map.tscn" id="2_tsjw7"]
+
+[sub_resource type="Theme" id="Theme_wsdt0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -57,6 +59,7 @@ alignment = 1
 
 [node name="Singleplayer" type="Button" parent="VBox"]
 layout_mode = 2
+theme = SubResource("Theme_wsdt0")
 text = "Singleplayer"
 
 [node name="Splitscreen" type="Button" parent="VBox"]
