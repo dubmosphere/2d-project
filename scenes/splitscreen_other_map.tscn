@@ -34,8 +34,10 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="SubViewport1" type="SubViewport" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1"]
+disable_3d = true
 handle_input_locally = false
 audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 sdf_scale = 0
 canvas_cull_mask = 4294967267
 size = Vector2i(959, 539)
@@ -50,6 +52,7 @@ visibility_layer = 2
 
 [node name="Player" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("6_1yn21")]
 position = Vector2(306, 841)
+id = 1
 
 [node name="Rain" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("7_cjpl0")]
 light_mask = 2
@@ -61,8 +64,10 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="SubViewport2" type="SubViewport" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2"]
+disable_3d = true
 handle_input_locally = false
 audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 canvas_cull_mask = 4294967269
 size = Vector2i(959, 539)
 render_target_update_mode = 4
@@ -74,7 +79,6 @@ visibility_layer = 4
 
 [node name="Player2" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("6_1yn21")]
 position = Vector2(-1322, 584)
-id = 1
 
 [node name="Rain" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("7_cjpl0")]
 light_mask = 4
@@ -92,8 +96,10 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="SubViewport3" type="SubViewport" parent="VBoxContainer/HBoxContainer2/SubViewportContainer3"]
+disable_3d = true
 handle_input_locally = false
 audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 canvas_cull_mask = 4294967273
 size = Vector2i(959, 539)
 render_target_update_mode = 4
@@ -117,8 +123,10 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="SubViewport4" type="SubViewport" parent="VBoxContainer/HBoxContainer2/SubViewportContainer4"]
+disable_3d = true
 handle_input_locally = false
 audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 canvas_cull_mask = 4294967281
 size = Vector2i(959, 539)
 render_target_update_mode = 4

@@ -478,6 +478,7 @@ input = NodePath("../../../PlayerInput")
 script = ExtResource("8_jdtps")
 movement = NodePath("../Movement")
 input = NodePath("../PlayerInput")
+on = true
 intensity = 1.0
 
 [node name="CigSmoke" type="GPUParticles2D" parent="." node_paths=PackedStringArray("input")]
