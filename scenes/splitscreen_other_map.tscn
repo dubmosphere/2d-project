@@ -52,7 +52,6 @@ visibility_layer = 2
 
 [node name="Player" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("6_1yn21")]
 position = Vector2(306, 841)
-id = 1
 
 [node name="Rain" parent="VBoxContainer/HBoxContainer1/SubViewportContainer1/SubViewport1" instance=ExtResource("7_cjpl0")]
 light_mask = 2
@@ -79,6 +78,7 @@ visibility_layer = 4
 
 [node name="Player2" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("6_1yn21")]
 position = Vector2(-1322, 584)
+id = 1
 
 [node name="Rain" parent="VBoxContainer/HBoxContainer1/SubViewportContainer2/SubViewport2" instance=ExtResource("7_cjpl0")]
 light_mask = 4

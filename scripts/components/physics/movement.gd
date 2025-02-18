@@ -62,9 +62,8 @@ func handle_jump() -> void:
 
 func jump() -> void:
 	do_jump = false
-	
 	if Main.godmode \
-	  || actor.is_on_floor()\
+	  || (actor.is_on_floor() && jump_count < max_jump_count)\
 	  || (jump_count > 0 && jump_count < max_jump_count && !actor.is_on_floor()):
 		do_jump = true
 	
