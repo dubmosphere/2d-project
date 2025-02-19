@@ -10,6 +10,11 @@ extends Node
 @onready var sub_viewport4: SubViewport = $VBoxContainer/HBoxContainer2/SubViewportContainer4/SubViewport4
 
 func _ready() -> void:
+	for child in SoundManager.get_children():
+		if child is AudioStreamPlayer2D:
+			SoundManager.remove_child(child)
+			sub_viewport1.add_child(child)
+	
 	var world = sub_viewport1.find_world_2d()
 	sub_viewport2.world_2d = world
 	sub_viewport3.world_2d = world

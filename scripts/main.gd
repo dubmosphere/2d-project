@@ -6,6 +6,11 @@ extends Node
 static var godmode: bool = false
 
 func _ready() -> void:
+	for child in SoundManager.get_children():
+		if child is AudioStreamPlayer2D:
+			SoundManager.remove_child(child)
+			add_child(child)
+	
 	var enemy: Enemy = enemy_scene.instantiate() as Enemy
 	var spawn_location: Vector2 = Vector2(-216.0, -230.0)
 	

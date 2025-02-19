@@ -9,6 +9,8 @@ extends Node
 @export var bullets: int
 @export var bullet_scene: PackedScene
 
+var do_attack = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if input.attack:
@@ -18,6 +20,7 @@ func attack() -> void:
 	spawn_bullet()
 
 func spawn_bullet() -> void:
+	do_attack = false
 	if !bullets && !Main.godmode:
 		return
 	bullets -= 1

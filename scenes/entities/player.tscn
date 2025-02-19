@@ -281,22 +281,6 @@ states/walk/position = Vector2(658, 124)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_trtdl"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ksvf1"), "idle", "jump_up", SubResource("AnimationNodeStateMachineTransition_kqpcd"), "jump_up", "jump_down", SubResource("AnimationNodeStateMachineTransition_kget7"), "jump_down", "idle", SubResource("AnimationNodeStateMachineTransition_nyytb"), "walk", "jump_up", SubResource("AnimationNodeStateMachineTransition_wjjq2"), "jump_down", "walk", SubResource("AnimationNodeStateMachineTransition_k3wp8")]
 graph_offset = Vector2(26, 56)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcnap"]
-bg_color = Color(0.19, 0.19, 0.19, 0.607843)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.19, 0.19, 0.19, 0.858824)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ken80"]
-bg_color = Color(0.73, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.349797, 0.00726303, 0.00402886, 1)
-
 [sub_resource type="Curve" id="Curve_apksf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.695122, 0.934066), -0.924812, -0.924812, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -348,6 +332,22 @@ scale_curve = SubResource("CurveXYZTexture_lf00u")
 color = Color(0.91664, 0.91664, 0.91664, 1)
 alpha_curve = SubResource("CurveTexture_knppd")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcnap"]
+bg_color = Color(0.19, 0.19, 0.19, 0.607843)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.19, 0.19, 0.19, 0.858824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ken80"]
+bg_color = Color(0.73, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.349797, 0.00726303, 0.00402886, 1)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 floor_stop_on_slope = false
@@ -387,54 +387,11 @@ polygon = PackedVector2Array(-14, -7, -14, 5, -7, 11.78, 7, 11.78, 14, 5, 14, -7
 script = ExtResource("4_xctth")
 health = 100
 
-[node name="HealthBar" type="CanvasLayer" parent="."]
-
-[node name="ProgressBar" type="ProgressBar" parent="HealthBar" node_paths=PackedStringArray("health_system", "input")]
-light_mask = 0
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -208.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 48.0
-grow_horizontal = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_lcnap")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ken80")
-value = 100.0
-show_percentage = false
-script = ExtResource("17_ia21i")
-health_system = NodePath("../../HealthSystem")
-input = NodePath("../../PlayerInput")
-
 [node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("player")]
 process_priority = -1
 process_physics_priority = -1
 script = ExtResource("5_gaf7g")
 player = NodePath("..")
-
-[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
-script = ExtResource("6_d6hly")
-actor = NodePath("..")
-input = NodePath("../PlayerInput")
-acceleration = 50.0
-deceleration = 20.0
-jump_acceleration = 30.0
-jump_deceleration = 2.0
-speed = 650.0
-max_jump_count = 2
-jump_velocity = -550.0
-max_down_speed = 1500.0
-
-[node name="RangedWeapon" type="Node" parent="." node_paths=PackedStringArray("actor", "bullet_offset", "input")]
-script = ExtResource("7_suntm")
-actor = NodePath("..")
-bullet_offset = NodePath("../AimAxis/BulletOffset")
-input = NodePath("../PlayerInput")
-damage = 20
-projectile_velocity = 1000.0
-bullets = 9999
-bullet_scene = ExtResource("8_hnqrm")
 
 [node name="AimAxis" type="Marker2D" parent="." node_paths=PackedStringArray("input")]
 script = ExtResource("10_eq31a")
@@ -474,11 +431,33 @@ offset = Vector2(0, 10)
 script = ExtResource("13_1ado3")
 input = NodePath("../../../PlayerInput")
 
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("actor", "input")]
+script = ExtResource("6_d6hly")
+actor = NodePath("..")
+input = NodePath("../PlayerInput")
+acceleration = 100.0
+deceleration = 60.0
+jump_acceleration = 30.0
+jump_deceleration = 2.0
+speed = 650.0
+max_jump_count = 2
+jump_velocity = -550.0
+max_down_speed = 1500.0
+
+[node name="RangedWeapon" type="Node" parent="." node_paths=PackedStringArray("actor", "bullet_offset", "input")]
+script = ExtResource("7_suntm")
+actor = NodePath("..")
+bullet_offset = NodePath("../AimAxis/BulletOffset")
+input = NodePath("../PlayerInput")
+damage = 20
+projectile_velocity = 1000.0
+bullets = 9999
+bullet_scene = ExtResource("8_hnqrm")
+
 [node name="ForceFeedback" type="Node" parent="." node_paths=PackedStringArray("movement", "input")]
 script = ExtResource("8_jdtps")
 movement = NodePath("../Movement")
 input = NodePath("../PlayerInput")
-on = true
 intensity = 1.0
 
 [node name="CigSmoke" type="GPUParticles2D" parent="." node_paths=PackedStringArray("input")]
@@ -500,3 +479,23 @@ drag_left_margin = 0.05
 drag_top_margin = 0.25
 drag_right_margin = 0.05
 drag_bottom_margin = 0.25
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" node_paths=PackedStringArray("health_system", "input")]
+light_mask = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lcnap")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ken80")
+value = 100.0
+show_percentage = false
+script = ExtResource("17_ia21i")
+health_system = NodePath("../../HealthSystem")
+input = NodePath("../../PlayerInput")
